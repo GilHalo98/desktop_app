@@ -11,7 +11,11 @@ import TabLineas from './componentes/tabLineas';
 import TablaSeguimiento from './componentes/tablaSeguimiento';
 
 import { formatearDatos } from './logic/formatearDatos';
-import { getSeguimientoPiezas, getLineas } from './logic/query';
+import {
+    getSeguimientoPiezas,
+    getLineas,
+    buscarLineaZona
+} from './logic/query';
 
 export default function ListaLineasPage() {
     // Declaramos los hookers que vamos a usar.
@@ -22,20 +26,27 @@ export default function ListaLineasPage() {
     const [paginaActual, setPaginaActual] = React.useState(1);
     const [refresh, setRefresh] = React.useState(true);
 
+
+    const [dataMatrix, setDataMatrix] = React.useState('');
     const [linea, setLinea] = React.useState('');
     const [listaLineas, setListaLineas] = React.useState([]);
 
     // Declaramos el useEffect de react para actualizar
     // el contenido de la vista.
     React.useEffect(() => {
-        getSeguimientoPiezas(
-            elementos,
-            offset,
-            setListaRegistros,
-            setTotalPaginas,
-            linea
-        );
-    }, [paginaActual, refresh, linea]);
+        if(!dataMatrix) {
+            getSeguimientoPiezas(
+                elementos,
+                offset,
+                setListaRegistros,
+                setTotalPaginas,
+                linea,
+                dataMatrix
+            );
+        } else {
+            buscarLineaZona(dataMatrix);
+        }
+    }, [paginaActual, refresh, linea, dataMatrix]);
 
     React.useEffect(() => {
         getLineas(setListaLineas, setLinea);
@@ -69,6 +80,7 @@ export default function ListaLineasPage() {
                                 lineaActiva={linea}
                                 resetPaginaActual={setPaginaActual}
                                 setOffset={setOffset}
+                                setDataMatrix={setDataMatrix}
                             />
                         </Col>
                     </Row>

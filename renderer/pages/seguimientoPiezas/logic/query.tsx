@@ -10,7 +10,8 @@ const getSeguimientoPiezas = async (
     limit: any, offset: any,
     setListaRegistros: any,
     setTotalPaginas: any,
-    idLineaVinculada: any
+    idLineaVinculada: any,
+    dataMatrix: any
 ) => {
     // Realizamos la consulta de los registros registrados.
     const registrosResponse = await axios({
@@ -19,7 +20,8 @@ const getSeguimientoPiezas = async (
         params: {
             offset: offset,
             limit: limit,
-            idLineaVinculada: idLineaVinculada
+            idLineaVinculada: idLineaVinculada,
+            dataMatrix: dataMatrix
         }
     });
 
@@ -45,9 +47,23 @@ const getLineas = async (
 
     // Inicializamos la linea a mostrar.
     setLinea(registrosResponse.data.registros[0].id);
-}
+};
+
+const buscarLineaZona = async (
+    dataMatrix: any
+) => {
+    // Realizamos la consulta de los registros registrados.
+    const registrosResponse = await axios({
+        method: 'get',
+        url: 'http://' + API_HOST + ':' + API_PORT + API_URL + 'dashboard/buscar/lineaZona',
+        params: {
+            dataMatrix: dataMatrix
+        }
+    });
+};
 
 export {
     getSeguimientoPiezas,
-    getLineas
+    getLineas,
+    buscarLineaZona
 };

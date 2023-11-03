@@ -14,7 +14,11 @@ function formatearDatos(listaRegistros: any) {
         if(registro.pieza) {
             datos.push(registro.pieza.dataMatrix);
             datos.push(registro.pieza.tipoPieza.descripcionTipoPieza);
-            // datos.push(registro.pieza.statuses);
+            datos.push('');
+        } else {
+            datos.push('');
+            datos.push('');
+            datos.push('');
         }
 
         // Reformateamos los datos y lo guardamos en la lista de registros.
