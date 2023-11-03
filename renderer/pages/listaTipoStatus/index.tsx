@@ -43,6 +43,7 @@ export default function ListaTipoStatusPage() {
                 <SideBar paginaActual={7} />
 
                 <Container fluid>
+                    <br/>
                     <Row>
                         <Col>
                             <Tabla

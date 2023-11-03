@@ -18,7 +18,7 @@ export default function TablaSeguimiento(
                     {props.children}
                 </CardTitle>
 
-                <Table hover dark>
+                <Table hover dark responsive>
                     <thead>
                         <tr key="header">
                             {props.cabeceras.map((cabecera: any) => {

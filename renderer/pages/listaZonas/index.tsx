@@ -51,6 +51,7 @@ export default function ListaZonaPage() {
                 <SideBar paginaActual={2} />
 
                 <Container fluid>
+                    <br/>
                     <Row>
                         <Col>
                             <Tabla

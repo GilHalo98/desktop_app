@@ -2,8 +2,8 @@ import {
     Container, Row, Col,
     Nav, NavItem, NavLink,
     Card, CardBody, CardTitle, CardSubtitle, CardText, CardHeader,
-    Input
 } from 'reactstrap';
+import BarraBusqueda from './barraBusqueda';
 
 export default function TabLineas(
     props: any
@@ -44,18 +44,11 @@ export default function TabLineas(
 
                     <br/>
 
-                    <Row>
-                        <Col>
-                            <Input
-                                id="dataMatrix"
-                                placeholder="Datamatrix de la pieza"
-                                type="text"
-                                onChange={(input) => {
-                                    props.setDataMatrix(input.target.value);
-                                }}
-                            />
-                        </Col>
-                    </Row>
+                    <BarraBusqueda
+                        setDataMatrix={props.setDataMatrix}
+                        cabeceras={props.cabeceras}
+                        registros={props.registros}
+                    />
                 </Container>
 
             </CardBody>

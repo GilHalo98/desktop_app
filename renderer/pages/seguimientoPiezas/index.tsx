@@ -10,11 +10,15 @@ import SideBar from '../../components/sidebar/sidebar';
 import TabLineas from './componentes/tabLineas';
 import TablaSeguimiento from './componentes/tablaSeguimiento';
 
-import { formatearDatos } from './logic/formatearDatos';
+import {
+    formatearDatos,
+    formatearDatosBusquedaPieza
+} from './logic/formatearDatos';
+
 import {
     getSeguimientoPiezas,
     getLineas,
-    buscarLineaZona
+    buscarPieza
 } from './logic/query';
 
 export default function ListaLineasPage() {
@@ -26,27 +30,26 @@ export default function ListaLineasPage() {
     const [paginaActual, setPaginaActual] = React.useState(1);
     const [refresh, setRefresh] = React.useState(true);
 
-
     const [dataMatrix, setDataMatrix] = React.useState('');
     const [linea, setLinea] = React.useState('');
     const [listaLineas, setListaLineas] = React.useState([]);
+    const [piezaBuscada, setPiezaBuscada] = React.useState([]);
 
     // Declaramos el useEffect de react para actualizar
     // el contenido de la vista.
     React.useEffect(() => {
-        if(!dataMatrix) {
-            getSeguimientoPiezas(
-                elementos,
-                offset,
-                setListaRegistros,
-                setTotalPaginas,
-                linea,
-                dataMatrix
-            );
-        } else {
-            buscarLineaZona(dataMatrix);
-        }
-    }, [paginaActual, refresh, linea, dataMatrix]);
+        getSeguimientoPiezas(
+            elementos,
+            offset,
+            setListaRegistros,
+            setTotalPaginas,
+            linea
+        );
+    }, [paginaActual, refresh, linea]);
+
+    React.useEffect(() => {
+        buscarPieza(dataMatrix, setPiezaBuscada);
+    }, [dataMatrix, refresh]);
 
     React.useEffect(() => {
         getLineas(setListaLineas, setLinea);
@@ -81,6 +84,15 @@ export default function ListaLineasPage() {
                                 resetPaginaActual={setPaginaActual}
                                 setOffset={setOffset}
                                 setDataMatrix={setDataMatrix}
+                                cabeceras={[
+                                    'Data matrix',
+                                    'Tipo de Pieza',
+                                    'Linea',
+                                    'Zona'
+                                ]}
+                                registros={
+                                    formatearDatosBusquedaPieza(piezaBuscada)
+                                }
                             />
                         </Col>
                     </Row>
@@ -95,9 +107,12 @@ export default function ListaLineasPage() {
                                     'Zona',
                                     'Data matrix',
                                     'Tipo de pieza',
-                                    'Status de Pieza'
+                                    'Ultimo status de Pieza',
+                                    'Estado del status',
                                 ]}
-                                registros={formatearDatos(listaRegistros)}
+                                registros={
+                                    formatearDatos(listaRegistros)
+                                }
                                 paginaActual={paginaActual}
                                 offset={offset}
                                 elementos={elementos}

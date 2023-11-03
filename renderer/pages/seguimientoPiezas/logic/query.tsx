@@ -10,8 +10,7 @@ const getSeguimientoPiezas = async (
     limit: any, offset: any,
     setListaRegistros: any,
     setTotalPaginas: any,
-    idLineaVinculada: any,
-    dataMatrix: any
+    idLineaVinculada: any
 ) => {
     // Realizamos la consulta de los registros registrados.
     const registrosResponse = await axios({
@@ -20,8 +19,7 @@ const getSeguimientoPiezas = async (
         params: {
             offset: offset,
             limit: limit,
-            idLineaVinculada: idLineaVinculada,
-            dataMatrix: dataMatrix
+            idLineaVinculada: idLineaVinculada
         }
     });
 
@@ -49,21 +47,25 @@ const getLineas = async (
     setLinea(registrosResponse.data.registros[0].id);
 };
 
-const buscarLineaZona = async (
-    dataMatrix: any
+const buscarPieza = async (
+    dataMatrix: any,
+    setRegistroBuscado: any
 ) => {
     // Realizamos la consulta de los registros registrados.
     const registrosResponse = await axios({
         method: 'get',
-        url: 'http://' + API_HOST + ':' + API_PORT + API_URL + 'dashboard/buscar/lineaZona',
+        url: 'http://' + API_HOST + ':' + API_PORT + API_URL + 'dashboard/buscar/pieza',
         params: {
-            dataMatrix: dataMatrix
+            dataMatrix: dataMatrix.length <= 0 ? null : dataMatrix
         }
     });
+
+    // Guardamos el registro encontrado con coincidencias.
+    setRegistroBuscado(registrosResponse.data.registro);
 };
 
 export {
     getSeguimientoPiezas,
     getLineas,
-    buscarLineaZona
+    buscarPieza
 };

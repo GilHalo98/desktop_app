@@ -43,6 +43,7 @@ export default function ListaTipoPiezasPage() {
                 <SideBar paginaActual={8} />
 
                 <Container fluid>
+                    <br/>
                     <Row>
                         <Col>
                             <Tabla

@@ -53,6 +53,8 @@ export default function ListaLineasPage() {
                 <SideBar paginaActual={5} />
 
                 <Container fluid>
+                    <br/>
+                    
                     <Row>
                         <Col>
                             <Tabla
