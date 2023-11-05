@@ -3,8 +3,8 @@ import React from 'react';
 import Head from 'next/head';
 
 import {
+    Input,
     Container, Row, Col,
-    Card, CardBody, CardTitle, CardSubtitle, CardText
 } from 'reactstrap';
 
 import SideBar from '../../components/sidebar/sidebar';
@@ -12,7 +12,8 @@ import Tabla from '../../components/tabla/tabla';
 
 import { formatearDatos } from './logic/formatearDatos';
 import { getLineas } from './logic/query';
-import BarraBusqueda from './componentes/barraBusqueda';
+import BarraBusqueda from '../../components/barraBusqueda/barraBusqueda';
+import InputBusqueda from './componentes/inputBusqueda';
 
 export default function ListaLineasPage() {
     // Declaramos los hookers que vamos a usar.
@@ -65,10 +66,15 @@ export default function ListaLineasPage() {
                                 setPaginaActual={setPaginaActual}
                                 setOffset={setOffset}
                                 totalPaginas={totalPaginas}
+                                mostrarOpciones
                             >
                                 <BarraBusqueda
-                                    setNombreLinea={setNombreLinea}
-                                />
+                                    tituloBoton='Buscar Linea'
+                                >
+                                    <InputBusqueda
+                                        setNombreLinea={setNombreLinea}
+                                    />
+                                </BarraBusqueda>
                             </Tabla>
                         </Col>
                     </Row>
