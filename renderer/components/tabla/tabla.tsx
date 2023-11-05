@@ -1,16 +1,67 @@
 import {
-    Table,
-    Card, CardBody, CardTitle, CardSubtitle, CardText, CardHeader
+    Table, Button,
+    Container, Row, Col,
+    Card, CardBody, CardTitle, CardSubtitle, CardText, CardHeader,
 } from 'reactstrap';
 import Paginacion from '../paginacion/paginacion';
 
 export default function Tabla(
     props: any
 ) {
+    function thOpciones(activarOpciones: boolean) {
+        if(activarOpciones) {
+            return(
+                <th>Opciones</th>
+            );
+        }
+    };
+
+    function tdOpciones(activarOpciones: boolean, idRegistro: number) {
+        if(activarOpciones) {
+            return(
+                <td>
+                    <Container>
+                        <Row>
+                            <Col sm={6}>
+                                <Button color='warning'>
+                                    M
+                                </Button>
+                            </Col>
+
+                            <Col sm={6}>
+                                <Button color='danger'>
+                                    R
+                                </Button>
+                            </Col>
+                        </Row>
+                    </Container>
+                </td>
+            );
+        }
+    };
+
     return(
         <Card color='dark'>
             <CardHeader className='text-white'>
-                {props.titulo}
+                <Container>
+                    <Row>
+                        <Col sm='9'>
+                            <h1>{props.titulo}</h1>
+                        </Col>
+
+                        <Col>
+                            <Button block size="sm" color='primary'>
+                                Agregar Registro
+                            </Button>
+                        </Col>
+
+                        <Col>
+                            <Button block size="sm" color='warning'>
+                                Opciones
+                            </Button>
+                        </Col>
+                    </Row>
+                </Container>
             </CardHeader>
 
             <CardBody>
@@ -28,6 +79,8 @@ export default function Tabla(
                                     </th>
                                 );
                             })}
+
+                            {thOpciones(props.mostrarOpciones)}
                         </tr>
                     </thead>
 
@@ -42,6 +95,7 @@ export default function Tabla(
                                             </td>
                                         );
                                     })}
+                                    {tdOpciones(props.mostrarOpciones, 0)}
                                 </tr>
                             );
                         })}
