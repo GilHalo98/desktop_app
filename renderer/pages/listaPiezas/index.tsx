@@ -12,7 +12,8 @@ import Tabla from '../../components/tabla/tabla';
 
 import { formatearDatos } from './logic/formatearDatos';
 import { getPiezas, getTiposPieza } from './logic/query';
-import BarraBusqueda from './componentes/barraBusqueda';
+import BarraBusqueda from '../../components/barraBusqueda/barraBusqueda';
+import InputBusqueda from './componentes/inputBusqueda';
 
 export default function ListaLineasPage() {
     // Declaramos los hookers que vamos a usar.
@@ -73,12 +74,17 @@ export default function ListaLineasPage() {
                                 setPaginaActual={setPaginaActual}
                                 setOffset={setOffset}
                                 totalPaginas={totalPaginas}
+                                mostrarOpciones
                             >
                                 <BarraBusqueda
-                                    setDataMatrix={setDataMatrix}
-                                    setTipoPieza={setTipoPieza}
-                                    listaTiposPieza={listaTiposPieza}
-                                />
+                                    tituloBoton='Buscar Pieza'
+                                >
+                                    <InputBusqueda
+                                        setDataMatrix={setDataMatrix}
+                                        setTipoPieza={setTipoPieza}
+                                        listaTiposPieza={listaTiposPieza}
+                                    />
+                                </BarraBusqueda>
                             </Tabla>
                         </Col>
                     </Row>
