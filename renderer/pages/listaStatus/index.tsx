@@ -4,12 +4,13 @@ import Head from 'next/head';
 
 import {
     Container, Row, Col,
-    Card, CardBody, CardTitle, CardSubtitle, CardText
+    Card, CardBody, CardTitle, CardSubtitle, CardText, Input
 } from 'reactstrap';
 
 import SideBar from '../../components/sidebar/sidebar';
 import Tabla from '../../components/tabla/tabla';
-import BarraBusqueda from './componentes/barraBusqueda';
+import InputBusqueda from './componentes/inputBusqueda';
+import BarraBusqueda from '../../components/barraBusqueda/barraBusqueda';
 
 import { formatearDatos } from './logic/formatearDatos';
 import { getStatus, getTipoStatus, getEstadosStatus } from './logic/query';
@@ -78,14 +79,19 @@ export default function ListaLineasPage() {
                                 setPaginaActual={setPaginaActual}
                                 setOffset={setOffset}
                                 totalPaginas={totalPaginas}
+                                mostrarOpciones
                             >
                                 <BarraBusqueda
-                                    setDataMatrix={setDataMatrix}
-                                    setEstadoStatus={setEstadoStatus}
-                                    setTipoStatus={setTipoStatus}
-                                    listaEstadosStatus={listaEstadosStatus}
-                                    listaTiposStatus={listaTiposStatus}
-                                />
+                                    tituloBoton='Buscar Status'
+                                >
+                                    <InputBusqueda
+                                        setDataMatrix={setDataMatrix}
+                                        setEstadoStatus={setEstadoStatus}
+                                        setTipoStatus={setTipoStatus}
+                                        listaEstadosStatus={listaEstadosStatus}
+                                        listaTiposStatus={listaTiposStatus}
+                                    />
+                                </BarraBusqueda>
                             </Tabla>
                         </Col>
                     </Row>

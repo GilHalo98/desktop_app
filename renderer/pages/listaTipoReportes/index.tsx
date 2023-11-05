@@ -11,7 +11,8 @@ import Tabla from '../../components/tabla/tabla';
 
 import { formatearDatos } from './logic/formatearDatos';
 import { getTiposReporte } from './logic/query';
-import BarraBusqueda from './componentes/barraBusqueda';
+import InputBusqueda from './componentes/inputBusqueda';
+import BarraBusqueda from '../../components/barraBusqueda/barraBusqueda';
 
 export default function ListaTipoStatusPage() {
     // Declaramos los hookers que vamos a usar.
@@ -61,10 +62,16 @@ export default function ListaTipoStatusPage() {
                                 setPaginaActual={setPaginaActual}
                                 setOffset={setOffset}
                                 totalPaginas={totalPaginas}
+                                mostrarOpciones
                             >
                                 <BarraBusqueda
-                                    setDescripcionTipoReporte={setDescripcionTipoReporte}
-                                />
+                                    tituloBoton='Buscar Tipo de Reporte'
+                                >
+
+                                    <InputBusqueda
+                                        setDescripcionTipoReporte={setDescripcionTipoReporte}
+                                    />
+                                </BarraBusqueda>
                             </Tabla>
                         </Col>
                     </Row>

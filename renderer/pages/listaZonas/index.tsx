@@ -11,7 +11,8 @@ import Tabla from '../../components/tabla/tabla';
 
 import { formatearDatos } from './logic/formatearDatos';
 import { getZonas, getLineas } from './logic/query';
-import BarraBusqueda from './componentes/barraBusqueda';
+import InputBusqueda from './componentes/inputBusqueda';
+import BarraBusqueda from '../../components/barraBusqueda/barraBusqueda';
 
 export default function ListaZonaPage() {
     // Declaramos los hookers que vamos a usar.
@@ -73,12 +74,17 @@ export default function ListaZonaPage() {
                                 setPaginaActual={setPaginaActual}
                                 setOffset={setOffset}
                                 totalPaginas={totalPaginas}
+                                mostrarOpciones
                             >
                                 <BarraBusqueda
-                                    setNombreZona={setNombreZona}
-                                    setLineaPerteneciente={setLineaPerteneciente}
-                                    listaLineasPertenecientes={listaLineasPertenecientes}
-                                />
+                                    tituloBoton='Buscar Zona'
+                                >
+                                    <InputBusqueda
+                                        setNombreZona={setNombreZona}
+                                        setLineaPerteneciente={setLineaPerteneciente}
+                                        listaLineasPertenecientes={listaLineasPertenecientes}
+                                    />
+                                </BarraBusqueda>
                             </Tabla>
                         </Col>
                     </Row>
