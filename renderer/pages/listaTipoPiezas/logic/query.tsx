@@ -30,6 +30,50 @@ const getTiposPieza = async (
     setTotalPaginas(Math.ceil(registrosResponse.data.totalRegistros / limit));
 };
 
+const registrarTipoPieza = async (
+    descripcionTipoPieza: string
+) => {
+    // Realizamos el registro
+    const registrosResponse = await axios({
+        method: 'post',
+        url: 'http://' + API_HOST + ':' + API_PORT + API_URL + 'tipoPieza/registrar',
+        data: {
+            descripcionTipoPieza: descripcionTipoPieza
+        }
+    });
+};
+
+const actualizarTipoPieza = async (
+    idRegistro: string,
+    descripcionTipoPieza: string
+) => {
+    // Realizamos el registro
+    const registrosResponse = await axios({
+        method: 'put',
+        url: 'http://' + API_HOST + ':' + API_PORT + API_URL + 'tipoPieza/modificar',
+        data: {
+            id: idRegistro,
+            descripcionTipoPieza: descripcionTipoPieza
+        }
+    });
+};
+
+const eliminarTipoPieza = async (
+    idRegistro: string,
+) => {
+    // Realizamos el registro
+    const registrosResponse = await axios({
+        method: 'delete',
+        url: 'http://' + API_HOST + ':' + API_PORT + API_URL + 'tipoPieza/eliminar',
+        params: {
+            id: idRegistro,
+        }
+    });
+};
+
 export {
-    getTiposPieza
+    getTiposPieza,
+    registrarTipoPieza,
+    actualizarTipoPieza,
+    eliminarTipoPieza
 };

@@ -41,9 +41,59 @@ const getLineas = async (setLineasPertenecientes) => {
 
     // Guardamos los registros.
     setLineasPertenecientes(registrosResponse.data.registros);
-}
+};
+
+const registrarZona = async (
+    nombreZona: string,
+    descripcionZona: string,
+    idLineaVinculada: number,
+) => {
+    const registroResponse = await axios({
+        method: 'post',
+        url: 'http://' + API_HOST + ':' + API_PORT + API_URL + 'zona/registrar',
+        data: {
+            nombreZona: nombreZona,
+            descripcionZona: descripcionZona,
+            idLineaVinculada: idLineaVinculada
+        }
+    });
+};
+
+const modificarZona = async (
+    idRegistro: string,
+    nombreZona: string,
+    descripcionZona: string,
+    idLineaVinculada: string,
+) => {
+    const registroResponse = await axios({
+        method: 'put',
+        url: 'http://' + API_HOST + ':' + API_PORT + API_URL + 'zona/modificar',
+        data: {
+            id: idRegistro,
+            nombreZona: nombreZona,
+            descripcionZona: descripcionZona,
+            idLineaVinculada: idLineaVinculada
+        }
+    });
+};
+
+const eliminarZona = async (
+    idRegistro: number
+) => {
+    // Removemos el registro.
+    const registrosResponse = await axios({
+        method: 'delete',
+        url: 'http://' + API_HOST + ':' + API_PORT + API_URL + 'zona/eliminar',
+        params: {
+            id: idRegistro,
+        }
+    });
+};
 
 export {
     getZonas,
-    getLineas
+    getLineas,
+    registrarZona,
+    modificarZona,
+    eliminarZona
 };

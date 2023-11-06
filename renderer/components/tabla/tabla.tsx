@@ -9,7 +9,7 @@ import {
 import Paginacion from '../paginacion/paginacion';
 import ModalOpcionesTabla from '../modals/modalTabla';
 import {
-    thOpciones, tdOpciones
+    thOpciones, tdOpciones, mostrarAgregarRegistro
 } from './logic/columnaOpciones';
 
 export default function Tabla(
@@ -24,18 +24,11 @@ export default function Tabla(
                             <h1>{props.titulo}</h1>
                         </Col>
 
-                        <Col>
-                            <Button
-                                block
-                                outline
-                                size="sm"
-                                color='primary'
-                                active={props.estadoModalAddRegistro}
-                                onClick={props.toggleModalAddRegistro}
-                            >
-                                Agregar Registro
-                            </Button>
-                        </Col>
+                        {mostrarAgregarRegistro(
+                            props.ocultarBotonRegistro,
+                            props.estadoModalAddRegistro,
+                            props.toggleModalAddRegistro
+                        )}
 
                         <Col>
                             <Button

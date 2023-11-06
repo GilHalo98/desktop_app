@@ -11,9 +11,31 @@ export default function MenuOpcionesTabla(
         opcionesTabla: boolean,
         setOpcionesTabla: Function
         tiempoRefresh: number,
-        setTiempoRefresh: Function
+        setTiempoRefresh: Function,
+        ocultarOpcionesTabla: boolean
     }
 ) {
+    function mostrarOpciones() {
+        if(!props.ocultarOpcionesTabla) {
+            return(
+                <FormGroup switch>
+                    <Input
+                        type="switch"
+                        role="switch"
+                        checked={props.opcionesTabla}
+                        onChange={() => {
+                            props.setOpcionesTabla(!props.opcionesTabla);
+                        }}
+                    />
+    
+                    <Label check>
+                        Mostrar opciones de registros
+                    </Label>
+                </FormGroup>
+            );
+        }
+    }
+
     return(
         <Form>
             <FormGroup>
@@ -47,21 +69,7 @@ export default function MenuOpcionesTabla(
                     }}
                 />
             </FormGroup>
-
-            <FormGroup switch>
-                <Input
-                    type="switch"
-                    role="switch"
-                    checked={props.opcionesTabla}
-                    onChange={() => {
-                        props.setOpcionesTabla(!props.opcionesTabla);
-                    }}
-                />
-
-                <Label check>
-                    Mostrar opciones de registros
-                </Label>
-            </FormGroup>
+            {mostrarOpciones()}
         </Form>
     );
 };

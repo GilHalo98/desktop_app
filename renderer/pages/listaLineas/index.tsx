@@ -47,6 +47,8 @@ export default function ListaLineasPage() {
     const [offset, setOffset] = React.useState(0);
     const [totalPaginas, setTotalPaginas] = React.useState(1);
     const [paginaActual, setPaginaActual] = React.useState(1);
+
+    // Hooks de la barra de busqueda.
     const [nombreLinea, setNombreLinea] = React.useState('');
     
     // Hooks de las opciones de la tabla.
@@ -228,13 +230,12 @@ export default function ListaLineasPage() {
                                         setOpcionesTabla={setOpcionesTabla}
                                         tiempoRefresh={tiempoRefresh}
                                         setTiempoRefresh={setTiempoRefresh}
+                                        ocultarOpcionesTabla={false}
                                     />
                                 </ModalTabla>
 
                                 <ModalRegistro
                                     tituloModal='Agregar Registro de Lista'
-                                    tituloBotonOk='Registrar'
-                                    tituloBotonRechazo='Cancelar'
                                     modalActivo={estadoModalRegistroTabla}
                                     toggleModal={() => {
                                         toggleModalRegistro(

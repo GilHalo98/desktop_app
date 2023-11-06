@@ -3,6 +3,29 @@ import {
     Container, Row, Col
 } from 'reactstrap';
 
+function mostrarAgregarRegistro(
+    ocultarBotonRegistro: boolean,
+    estadoModalAddRegistro: boolean,
+    toggleModalAddRegistro: any
+) {
+    if(!ocultarBotonRegistro) {
+        return(
+            <Col>
+                <Button
+                    block
+                    outline
+                    size="sm"
+                    color='primary'
+                    active={estadoModalAddRegistro}
+                    onClick={toggleModalAddRegistro}
+                >
+                    Agregar Registro
+                </Button>
+            </Col>
+        );
+    }
+}
+
 function thOpciones(activarOpciones: boolean) {
     if(activarOpciones) {
         return(
@@ -57,5 +80,6 @@ function tdOpciones(
 
 export {
     thOpciones,
-    tdOpciones
+    tdOpciones,
+    mostrarAgregarRegistro
 };

@@ -56,7 +56,7 @@ const eliminarLinea = async (
             id: idRegistro,
         }
     });
-}
+};
 
 const modificarLinea = async (
     idRegistro: number,
@@ -73,7 +73,7 @@ const modificarLinea = async (
             descripcionLinea: descripcionLinea
         }
     });
-}
+};
 
 export {
     getLineas,
