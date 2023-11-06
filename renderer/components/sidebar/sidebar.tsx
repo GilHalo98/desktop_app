@@ -14,7 +14,7 @@ export default function SideBar(
             <Nav vertical pills fill>
                 {paginas.map((pagina) => {
                     return(
-                        <NavItem>
+                        <NavItem key={pagina.id}>
                             <NavLink
                                 active={props.paginaActual == pagina.id ? true : false}
                                 key={pagina.id}

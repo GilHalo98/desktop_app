@@ -1,45 +1,20 @@
+import React from 'react';
+
 import {
     Table, Button,
     Container, Row, Col,
-    Card, CardBody, CardTitle, CardSubtitle, CardText, CardHeader,
+    Card, CardBody, CardTitle, CardSubtitle, CardText, CardHeader, List,
 } from 'reactstrap';
+
 import Paginacion from '../paginacion/paginacion';
+import ModalOpcionesTabla from '../modals/modalTabla';
+import {
+    thOpciones, tdOpciones
+} from './logic/columnaOpciones';
 
 export default function Tabla(
     props: any
 ) {
-    function thOpciones(activarOpciones: boolean) {
-        if(activarOpciones) {
-            return(
-                <th>Opciones</th>
-            );
-        }
-    };
-
-    function tdOpciones(activarOpciones: boolean, idRegistro: number) {
-        if(activarOpciones) {
-            return(
-                <td>
-                    <Container>
-                        <Row>
-                            <Col sm={6}>
-                                <Button color='warning'>
-                                    M
-                                </Button>
-                            </Col>
-
-                            <Col sm={6}>
-                                <Button color='danger'>
-                                    R
-                                </Button>
-                            </Col>
-                        </Row>
-                    </Container>
-                </td>
-            );
-        }
-    };
-
     return(
         <Card color='dark'>
             <CardHeader className='text-white'>
@@ -50,13 +25,27 @@ export default function Tabla(
                         </Col>
 
                         <Col>
-                            <Button block size="sm" color='primary'>
+                            <Button
+                                block
+                                outline
+                                size="sm"
+                                color='primary'
+                                active={props.estadoModalAddRegistro}
+                                onClick={props.toggleModalAddRegistro}
+                            >
                                 Agregar Registro
                             </Button>
                         </Col>
 
                         <Col>
-                            <Button block size="sm" color='warning'>
+                            <Button
+                                block
+                                outline
+                                size="sm"
+                                color='warning'
+                                active={props.estadoModalOpciones}
+                                onClick={props.toggleModalOpciones}
+                            >
                                 Opciones
                             </Button>
                         </Col>
@@ -72,9 +61,9 @@ export default function Tabla(
                 <Table hover dark responsive>
                     <thead>
                         <tr key="header">
-                            {props.cabeceras.map((cabecera: any) => {
+                            {props.cabeceras.map((cabecera: string) => {
                                 return(
-                                    <th>
+                                    <th key={cabecera}>
                                         {cabecera}
                                     </th>
                                 );
@@ -86,16 +75,26 @@ export default function Tabla(
 
                     <tbody>
                         {props.registros.map((registro: any) => {
+                            const keyTR = registro.metadata.id;
+
                             return(
-                                <tr key={registro.metadata.id}>
-                                    {registro.data.map((dato: any) => {
+                                <tr key={keyTR}>
+                                    {registro.data.map((dato: any, index: number) => {
+                                        const keyTD = registro.metadata.id + '-' + props.cabeceras[index];
+
                                         return(
-                                            <td>
+                                            <td key={keyTD}>
                                                 {dato}
                                             </td>
                                         );
                                     })}
-                                    {tdOpciones(props.mostrarOpciones, 0)}
+
+                                    {tdOpciones(
+                                        props.mostrarOpciones,
+                                        registro.metadata.id,
+                                        props.toggleModalModificarRegistro,
+                                        props.toggleModalRemoverRegistro
+                                    )}
                                 </tr>
                             );
                         })}
