@@ -1,7 +1,7 @@
 // Importamos los request.
 import {
     GetSeguimientoPiezas,
-    GetBuscarPieza
+    GetBuscarPiezaEnSeguimiento
 } from "../request/dashboard";
 
 function SeguimientoPiezas (
@@ -34,7 +34,7 @@ function SeguimientoPiezas (
     });
 };
 
-function BuscarPieza (
+function BuscarPiezaEnSeguimiento (
     dataMatrix: string,
     setRegistroBuscado: Function
 ) {
@@ -44,7 +44,7 @@ function BuscarPieza (
     };
 
     // Realizamos el request.
-    GetBuscarPieza(parametrosBusqueda).then((respuesta) => {
+    GetBuscarPiezaEnSeguimiento(parametrosBusqueda).then((respuesta) => {
         // Guardamos los registros en la zona.
         setRegistroBuscado(respuesta.data.registro);
 
@@ -58,5 +58,5 @@ function BuscarPieza (
 
 export {
     SeguimientoPiezas,
-    BuscarPieza
+    BuscarPiezaEnSeguimiento
 };

@@ -49,7 +49,7 @@ const ENDPOINTS = {
             + 'modificar',
 
         ELIMINAR:
-            + URL_GENERALES.ZONA
+            BASE
             + URL_GENERALES.ZONA
             + 'eliminar',
     },

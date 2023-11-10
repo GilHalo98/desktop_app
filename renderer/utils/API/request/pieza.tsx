@@ -4,67 +4,67 @@ import axios from "axios";
 // Importamos los endpoints
 import { ENDPOINTS } from "../endpoints";
 
-const GetStatus = async (
+const GetPieza = async (
     parametros: {
         limit: number,
         offset: number,
         dataMatrix: string,
-        idEstadoVinculado: number,
-        idTipoStatusVinculado: number,
-        idPiezaStatusVinculada: number
+        idTipoPiezaVinculada: number,
+        idZonaActualVinculada: number
     }
 ) => {
+    console.log(parametros);
     return axios({
         method: 'get',
-        url: ENDPOINTS.STATUS.CONSULTA,
+        url: ENDPOINTS.PIEZA.CONSULTA,
         params: parametros
     });
 };
 
-const PostStatus = async (
+const PostPieza = async (
     body: {
-        idEstadoVinculado: number,
-        idTipoStatusVinculado: number,
-        idPiezaStatusVinculada: number
+        dataMatrix: string,
+        idTipoPiezaVinculada: number,
+        idZonaActualVinculada: number
     }
 ) => {
     return axios({
         method: 'post',
-        url: ENDPOINTS.STATUS.REGISTRAR,
+        url: ENDPOINTS.PIEZA.REGISTRAR,
         data: body
     });
 };
 
-const PutStatus = async (
+const PutPieza = async (
     body: {
         id: number,
-        idEstadoVinculado: number,
-        idTipoStatusVinculado: number,
-        idPiezaStatusVinculada: number
+        dataMatrix: string,
+        idTipoPiezaVinculada: number,
+        idZonaActualVinculada: number
     }
 ) => {
     return axios({
         method: 'put',
-        url: ENDPOINTS.STATUS.MODIFICAR,
+        url: ENDPOINTS.PIEZA.MODIFICAR,
         data: body
     });
 };
 
-const DeleteStatus = async (
+const DeletePieza = async (
     parametros: {
         id: number,
     }
 ) => {
     return axios({
         method: 'delete',
-        url: ENDPOINTS.STATUS.ELIMINAR,
+        url: ENDPOINTS.PIEZA.ELIMINAR,
         params: parametros
     });
 };
 
 export {
-    GetStatus,
-    PostStatus,
-    PutStatus,
-    DeleteStatus
+    GetPieza,
+    PostPieza,
+    PutPieza,
+    DeletePieza
 };

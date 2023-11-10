@@ -18,7 +18,7 @@ const GetSeguimientoPiezas = async (
     });
 };
 
-const GetBuscarPieza = async (
+const GetBuscarPiezaEnSeguimiento = async (
     parametros: {
         dataMatrix: string
     }
@@ -32,5 +32,5 @@ const GetBuscarPieza = async (
 
 export {
     GetSeguimientoPiezas,
-    GetBuscarPieza
+    GetBuscarPiezaEnSeguimiento
 };

@@ -1,15 +1,17 @@
 // Importamos los request.
 import {
-    GetEstadoStatus,
-    PostEstadoStatus,
-    DeleteEstadoStatus,
-    PutEstadoStatus 
-} from "../request/estadoStatus";
+    GetPieza,
+    PostPieza,
+    DeletePieza,
+    PutPieza 
+} from "../request/pieza";
 
-function ConsultaEstadoStatus (
+function ConsultaPieza (
     limit: number,
     offset: number,
-    nombreEstado: string,
+    dataMatrix: string,
+    idTipoPiezaVinculada: number,
+    idZonaActualVinculada: number,
     setListaRegistros: Function,
     setTotalPaginas: Function
 ) {
@@ -17,12 +19,14 @@ function ConsultaEstadoStatus (
     const parametrosBusqueda = {
         limit: limit,
         offset: offset,
-        nombreEstado: nombreEstado
+        dataMatrix: dataMatrix,
+        idTipoPiezaVinculada: idTipoPiezaVinculada,
+        idZonaActualVinculada: idZonaActualVinculada
     };
 
     // Realizamos el request.
-    GetEstadoStatus(parametrosBusqueda).then((respuesta) => {
-        // Guardamos los registros en la zona.
+    GetPieza(parametrosBusqueda).then((respuesta) => {
+        // Guardamos los registros en la pieza.
         setListaRegistros(respuesta.data.registros);
 
         if(setTotalPaginas) {
@@ -38,16 +42,20 @@ function ConsultaEstadoStatus (
     });
 };
 
-function RegistrarEstadoStatus (
-    nombreEstado: string
+function RegistrarPieza (
+    dataMatrix: string,
+    idTipoPiezaVinculada: number,
+    idZonaActualVinculada: number
 ) {
     // Creamos el cuerpo del registro.
     const cuerpoRegistro = {
-        nombreEstado: nombreEstado
+        dataMatrix: dataMatrix,
+        idTipoPiezaVinculada: idTipoPiezaVinculada,
+        idZonaActualVinculada: idZonaActualVinculada
     };
 
     // Realizamos el request.
-    PostEstadoStatus(cuerpoRegistro).then((respuesta) => {
+    PostPieza(cuerpoRegistro).then((respuesta) => {
 
     }).catch((error) => {
         // Ocurrio un errr al realizar el request.
@@ -57,7 +65,7 @@ function RegistrarEstadoStatus (
     });
 };
 
-function RemoverEstadoStatus(
+function RemoverPieza(
     idRegistro: number
 ) {
     // Creamos los parametros de busqueda de la consulta.
@@ -66,7 +74,7 @@ function RemoverEstadoStatus(
     }
 
     // Realizamos el request.
-    DeleteEstadoStatus(parametrosBusqueda).then((respuesta) => {
+    DeletePieza(parametrosBusqueda).then((respuesta) => {
 
     }).catch((error) => {
         // Ocurrio un errr al realizar el request.
@@ -76,18 +84,22 @@ function RemoverEstadoStatus(
     });
 }
 
-function ModificarEstadoStatus(
+function ModificarPieza(
     idRegistro: number,
-    nombreEstado: string,
+    dataMatrix: string,
+    idTipoPiezaVinculada: number,
+    idZonaActualVinculada: number
 ) {
     // Creamos los parametros de busqueda de la consulta.
     const parametrosBusqueda = {
         id: idRegistro,
-        nombreEstado: nombreEstado
+        dataMatrix: dataMatrix,
+        idTipoPiezaVinculada: idTipoPiezaVinculada,
+        idZonaActualVinculada: idZonaActualVinculada
     }
 
     // Realizamos el request.
-    PutEstadoStatus(parametrosBusqueda).then((respuesta) => {
+    PutPieza(parametrosBusqueda).then((respuesta) => {
 
     }).catch((error) => {
         // Ocurrio un errr al realizar el request.
@@ -98,8 +110,8 @@ function ModificarEstadoStatus(
 }
 
 export {
-    ConsultaEstadoStatus,
-    RegistrarEstadoStatus,
-    RemoverEstadoStatus,
-    ModificarEstadoStatus
+    ConsultaPieza,
+    RegistrarPieza,
+    RemoverPieza,
+    ModificarPieza
 };

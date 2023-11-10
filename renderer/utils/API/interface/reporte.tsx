@@ -9,6 +9,7 @@ import {
 function ConsultaReporte (
     limit: number,
     offset: number,
+    dataMatrix: string,
     idPiezaVinculada: number,
     idZonaVinculada: number,
     idTipoReporteVinculado: number,
@@ -19,6 +20,7 @@ function ConsultaReporte (
     const parametrosBusqueda = {
         limit: limit,
         offset: offset,
+        dataMatrix: dataMatrix,
         idPiezaVinculada: idPiezaVinculada,
         idZonaVinculada: idZonaVinculada,
         idTipoReporteVinculado: idTipoReporteVinculado
@@ -29,8 +31,10 @@ function ConsultaReporte (
         // Guardamos los registros en la reporte.
         setListaRegistros(respuesta.data.registros);
 
-        // Guardamos el total de paginas en la variable.
-        setTotalPaginas(Math.ceil(respuesta.data.totalRegistros / limit));
+        if(setTotalPaginas) {
+            // Guardamos el total de paginas en la variable.
+            setTotalPaginas(Math.ceil(respuesta.data.totalRegistros / limit));
+        }
 
     }).catch((error) => {
         // Ocurrio un errr al realizar el request.

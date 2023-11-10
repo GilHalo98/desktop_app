@@ -9,6 +9,7 @@ import {
 function ConsultaStatus (
     limit: number,
     offset: number,
+    dataMatrix: string,
     idEstadoVinculado: number,
     idTipoStatusVinculado: number,
     idPiezaStatusVinculada: number,
@@ -19,6 +20,7 @@ function ConsultaStatus (
     const parametrosBusqueda = {
         limit: limit,
         offset: offset,
+        dataMatrix: dataMatrix,
         idEstadoVinculado: idEstadoVinculado,
         idTipoStatusVinculado: idTipoStatusVinculado,
         idPiezaStatusVinculada: idPiezaStatusVinculada,
@@ -29,8 +31,10 @@ function ConsultaStatus (
         // Guardamos los registros en la status.
         setListaRegistros(respuesta.data.registros);
 
-        // Guardamos el total de paginas en la variable.
-        setTotalPaginas(Math.ceil(respuesta.data.totalRegistros / limit));
+        if(setTotalPaginas) {
+            // Guardamos el total de paginas en la variable.
+            setTotalPaginas(Math.ceil(respuesta.data.totalRegistros / limit));
+        }
 
     }).catch((error) => {
         // Ocurrio un errr al realizar el request.

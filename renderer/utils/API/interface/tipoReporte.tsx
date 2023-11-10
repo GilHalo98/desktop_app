@@ -25,8 +25,10 @@ function ConsultaTipoReporte (
         // Guardamos los registros en la zona.
         setListaRegistros(respuesta.data.registros);
 
-        // Guardamos el total de paginas en la variable.
-        setTotalPaginas(Math.ceil(respuesta.data.totalRegistros / limit));
+        if(setTotalPaginas) {
+            // Guardamos el total de paginas en la variable.
+            setTotalPaginas(Math.ceil(respuesta.data.totalRegistros / limit));
+        }
 
     }).catch((error) => {
         // Ocurrio un errr al realizar el request.

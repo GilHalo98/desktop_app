@@ -8,6 +8,7 @@ const GetReporte = async (
     parametros: {
         limit: number,
         offset: number,
+        dataMatrix: string,
         idPiezaVinculada: number,
         idZonaVinculada: number,
         idTipoReporteVinculado: number
