@@ -10,7 +10,15 @@ import SideBar from '../../components/sidebar/sidebar';
 import Tabla from '../../components/tabla/tabla';
 
 import { formatearDatos } from './logic/formatearDatos';
-import { getZonas, getLineas, registrarZona, modificarZona, eliminarZona } from './logic/query';
+
+import {
+    ConsultaZona,
+    RegistrarZona,
+    ModificarZona,
+    RemoverZona
+} from '../../utils/API/interface/zona';
+import { ConsultaLinea } from '../../utils/API/interface/linea';
+
 import InputBusqueda from './componentes/inputBusqueda';
 import BarraBusqueda from '../../components/barraBusqueda/barraBusqueda';
 import ModalTabla from '../../components/modals/modalTabla';
@@ -53,13 +61,13 @@ export default function ListaZonaPage() {
     // Declaramos el useEffect de react para
     // actualizar el contenido de la vista.
     React.useEffect(() => {
-        getZonas(
+        ConsultaZona(
             elementos,
             offset,
-            setListaRegistros,
-            setTotalPaginas,
             nombreZona,
-            lineaPerteneciente
+            lineaPerteneciente,
+            setListaRegistros,
+            setTotalPaginas
         );
     }, [
         paginaActual,
@@ -70,7 +78,13 @@ export default function ListaZonaPage() {
     ]);
 
     React.useEffect(() => {
-        getLineas(setListaLineasPertenecientes);
+        ConsultaLinea(
+            null,
+            null,
+            null,
+            setListaLineasPertenecientes,
+            null
+        );
     }, [refresh]);
 
     // La pagina se refresca cada tiempo dado.
@@ -158,7 +172,7 @@ export default function ListaZonaPage() {
                                             refresh,
                                             idRegistroOperacion,
                                             setRefresh,
-                                            eliminarZona,
+                                            RemoverZona,
                                             () => {
                                                 toggleModalRemoverRegistro(
                                                     estadoModalRemoverRegistro,
@@ -197,7 +211,7 @@ export default function ListaZonaPage() {
                                                 idRegistroOperacion,
                                                 nombreDeLinea,
                                                 descripcionDeLinea,
-                                                modificarZona,
+                                                ModificarZona,
                                                 setRefresh,
                                                 () => {
                                                     toggleModalModificarRegistro(
@@ -256,7 +270,7 @@ export default function ListaZonaPage() {
                                                 nombreDeZona,
                                                 descripcionDeZona,
                                                 lineaVinculadaDeZona,
-                                                registrarZona,
+                                                RegistrarZona,
                                                 setRefresh,
                                                 () => {
                                                     toggleModalRegistro(

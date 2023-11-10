@@ -18,7 +18,11 @@ import {
     toggleModalModificarRegistro
 } from './logic/toggleModals';
 import { formatearDatos } from './logic/formatearDatos';
-import { getStatus, getTipoStatus, getEstadosStatus } from './logic/query';
+
+import { ConsultaStatus } from '../../utils/API/interface/status';
+import { ConsultaTipoStatus } from '../../utils/API/interface/tipoStatus';
+import { ConsultaEstadoStatus } from '../../utils/API/interface/estadoStatus';
+
 import { funcionRefresh } from './logic/refresh';
 import ModalTabla from '../../components/modals/modalTabla';
 import MenuOpcionesTabla from '../../components/menus/menuOpcionesTabla';
@@ -32,9 +36,9 @@ export default function ListaLineasPage() {
 
     // Hooks de la barra de busqueda.
     const [dataMatrix, setDataMatrix] = React.useState('');
-    const [estadoStatus, setEstadoStatus] = React.useState('');
+    const [estadoStatus, setEstadoStatus] = React.useState();
     const [listaEstadosStatus, setListaEstadosStatus] = React.useState([]);
-    const [tipoStatus, setTipoStatus] = React.useState('');
+    const [tipoStatus, setTipoStatus] = React.useState();
     const [listaTiposStatus, setListaTiposStatus] = React.useState([]);
     
     // Hooks de las opciones de la tabla.
@@ -55,20 +59,40 @@ export default function ListaLineasPage() {
     // Declaramos el useEffect de react para actualizar
     // el contenido de la vista.
     React.useEffect(() => {
-        getStatus(
+        ConsultaStatus(
             elementos,
             offset,
-            setListaRegistros,
-            setTotalPaginas,
             dataMatrix,
             estadoStatus,
-            tipoStatus
-        );
-    }, [paginaActual, dataMatrix, estadoStatus, tipoStatus, elementos, refresh]);
+            tipoStatus,
+            null,
+            setListaRegistros,
+            setTotalPaginas
+        )
+    }, [
+        paginaActual,
+        dataMatrix,
+        estadoStatus,
+        tipoStatus,
+        elementos,
+        refresh
+    ]);
 
     React.useEffect(() => {
-        getTipoStatus(setListaTiposStatus);
-        getEstadosStatus(setListaEstadosStatus);
+        ConsultaTipoStatus(
+            null,
+            null,
+            null,
+            setListaTiposStatus,
+            null
+        );
+        ConsultaEstadoStatus(
+            null,
+            null,
+            null,
+            setListaEstadosStatus,
+            null
+        );
     }, [refresh]);
 
     // La pagina se refresca cada tiempo dado.

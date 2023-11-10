@@ -16,7 +16,10 @@ import {
     toggleModalModificarRegistro
 } from './logic/toggleModals';
 import { formatearDatos } from './logic/formatearDatos';
-import { getPiezas, getTiposPieza } from './logic/query';
+
+import { ConsultaPieza } from '../../utils/API/interface/pieza';
+import { ConsultaTipoPieza } from '../../utils/API/interface/tipoPieza';
+
 import BarraBusqueda from '../../components/barraBusqueda/barraBusqueda';
 import InputBusqueda from './componentes/inputBusqueda';
 import { funcionRefresh } from './logic/refresh';
@@ -32,7 +35,7 @@ export default function ListaLineasPage() {
 
     // Hooks de la barra de busqueda.
     const [dataMatrix, setDataMatrix] = React.useState('');
-    const [tipoPieza, setTipoPieza] = React.useState([]);
+    const [tipoPieza, setTipoPieza] = React.useState();
     const [listaTiposPieza, setListaTiposPieza] = React.useState([]);
     
     // Hooks de las opciones de la tabla.
@@ -53,18 +56,31 @@ export default function ListaLineasPage() {
     // Declaramos el useEffect de react para actualizar
     // el contenido de la vista.
     React.useEffect(() => {
-        getPiezas(
+        ConsultaPieza(
             elementos,
             offset,
+            dataMatrix,
+            tipoPieza,
+            null,
             setListaRegistros,
             setTotalPaginas,
-            dataMatrix,
-            tipoPieza
         );
-    }, [paginaActual, dataMatrix, tipoPieza, elementos, refresh]);
+    }, [
+        paginaActual,
+        dataMatrix,
+        tipoPieza,
+        elementos,
+        refresh
+    ]);
 
     React.useEffect(() => {
-        getTiposPieza(setListaTiposPieza);
+        ConsultaTipoPieza(
+            null,
+            null,
+            null,
+            setListaTiposPieza,
+            null
+        );
     }, [refresh]);
 
     // La pagina se refresca cada tiempo dado.

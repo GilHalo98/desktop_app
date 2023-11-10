@@ -15,7 +15,12 @@ import {
     toggleModalModificarRegistro
 } from './logic/toggleModals';
 import { formatearDatos } from './logic/formatearDatos';
-import { actualizarTipoPieza, eliminarTipoPieza, getTiposPieza, registrarTipoPieza } from './logic/query';
+import {
+    ConsultaTipoPieza,
+    RegistrarTipoPieza,
+    ModificarTipoPieza,
+    RemoverTipoPieza
+} from '../../utils/API/interface/tipoPieza';
 import InputBusqueda from './componentes/inputBusqueda';
 import BarraBusqueda from '../../components/barraBusqueda/barraBusqueda';
 import ModalTabla from '../../components/modals/modalTabla';
@@ -54,14 +59,19 @@ export default function ListaTipoPiezasPage() {
 
     // Declaramos el useEffect de react para actualizar el contenido de la vista.
     React.useEffect(() => {
-        getTiposPieza(
+        ConsultaTipoPieza(
             elementos,
             offset,
+            descripcionTipoPieza,
             setListaRegistros,
-            setTotalPaginas,
-            descripcionTipoPieza
+            setTotalPaginas
         );
-    }, [paginaActual, descripcionTipoPieza, elementos, refresh]);
+    }, [
+        paginaActual,
+        descripcionTipoPieza,
+        elementos,
+        refresh
+    ]);
 
     // La pagina se refresca cada tiempo dado.
     setTimeout(() => {
@@ -118,7 +128,7 @@ export default function ListaTipoPiezasPage() {
                                         estadoModalRemoverRegistro,
                                         setEstadoModalRemoverRegistro
                                     );
-                                }}
+                                }}registrarTipoPieza
                                 toggleModalModificarRegistro={(idRegistro: number) => {
                                     setIdRegistroOperacion(idRegistro);
 
@@ -144,7 +154,7 @@ export default function ListaTipoPiezasPage() {
                                             refresh,
                                             idRegistroOperacion,
                                             setRefresh,
-                                            eliminarTipoPieza,
+                                            RemoverTipoPieza,
                                             () => {
                                                 toggleModalRemoverRegistro(
                                                     estadoModalRemoverRegistro,
@@ -179,7 +189,7 @@ export default function ListaTipoPiezasPage() {
                                                 refresh,
                                                 idRegistroOperacion,
                                                 descripcionDeTipoStatus,
-                                                actualizarTipoPieza,
+                                                ModificarTipoPieza,
                                                 setRefresh,
                                                 () => {
                                                     toggleModalModificarRegistro(
@@ -232,7 +242,7 @@ export default function ListaTipoPiezasPage() {
                                             registrarDato(
                                                 refresh,
                                                 descripcionDeTipoStatus,
-                                                registrarTipoPieza,
+                                                RegistrarTipoPieza,
                                                 setRefresh,
                                                 () => {
                                                     toggleModalRegistro(

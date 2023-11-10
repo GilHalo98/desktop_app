@@ -15,7 +15,11 @@ import {
     toggleModalModificarRegistro
 } from './logic/toggleModals';
 import { formatearDatos } from './logic/formatearDatos';
-import { getReportes, getTiposReporte, getZonas } from './logic/query';
+
+import { ConsultaReporte } from '../../utils/API/interface/reporte';
+import { ConsultaTipoReporte } from '../../utils/API/interface/tipoReporte';
+import { ConsultaZona } from '../../utils/API/interface/zona';
+
 import BarraBusqueda from '../../components/barraBusqueda/barraBusqueda';
 import InputBusqueda from './componentes/inputBusqueda';
 import { funcionRefresh } from './logic/refresh';
@@ -31,9 +35,9 @@ export default function ListaLineasPage() {
 
     // Hooks de la barra de busqueda.
     const [dataMatrix, setDataMatrix] = React.useState('');
-    const [tipoReporte, setTipoReporte] = React.useState('');
+    const [tipoReporte, setTipoReporte] = React.useState();
     const [listaTiposReporte, setListaTiposReporte] = React.useState([]);
-    const [zona, setZona] = React.useState('');
+    const [zona, setZona] = React.useState();
     const [listaZonas, setListaZonas] = React.useState([]);
     
     // Hooks de las opciones de la tabla.
@@ -54,20 +58,42 @@ export default function ListaLineasPage() {
     // Declaramos el useEffect de react para actualizar
     // el contenido de la vista.
     React.useEffect(() => {
-        getReportes(
+        ConsultaReporte(
             elementos,
             offset,
-            setListaRegistros,
-            setTotalPaginas,
             dataMatrix,
+            null,
             zona,
-            tipoReporte
+            tipoReporte,
+            setListaRegistros,
+            setTotalPaginas
         );
-    }, [paginaActual, dataMatrix, tipoReporte, zona, elementos, refresh]);
+    }, [
+        paginaActual,
+        dataMatrix,
+        tipoReporte,
+        zona,
+        elementos,
+        refresh
+    ]);
 
     React.useEffect(() => {
-        getTiposReporte(setListaTiposReporte);
-        getZonas(setListaZonas);
+        ConsultaTipoReporte(
+            null,
+            null,
+            null,
+            setListaTiposReporte,
+            null
+        );
+
+        ConsultaZona(
+            null,
+            null,
+            null,
+            null,
+            setListaZonas,
+            null
+        );
     }, [refresh]);
 
         // La pagina se refresca cada tiempo dado.

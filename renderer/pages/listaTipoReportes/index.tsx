@@ -15,7 +15,14 @@ import {
     toggleModalModificarRegistro
 } from './logic/toggleModals';
 import { formatearDatos } from './logic/formatearDatos';
-import { actualizarTipoReporte, eliminarTipoReporte, getTiposReporte, registrarTipoReporte } from './logic/query';
+
+import {
+    ConsultaTipoReporte,
+    RegistrarTipoReporte,
+    ModificarTipoReporte,
+    RemoverTipoReporte
+} from '../../utils/API/interface/tipoReporte';
+
 import InputBusqueda from './componentes/inputBusqueda';
 import BarraBusqueda from '../../components/barraBusqueda/barraBusqueda';
 import ModalTabla from '../../components/modals/modalTabla';
@@ -54,14 +61,19 @@ export default function ListaTipoStatusPage() {
 
     // Declaramos el useEffect de react para actualizar el contenido de la vista.
     React.useEffect(() => {
-        getTiposReporte(
+        ConsultaTipoReporte(
             elementos,
             offset,
+            descripcionTipoReporte,
             setListaRegistros,
-            setTotalPaginas,
-            descripcionTipoReporte
+            setTotalPaginas
         );
-    }, [paginaActual, descripcionTipoReporte, elementos, refresh]);
+    }, [
+        descripcionTipoReporte,
+        paginaActual,
+        elementos,
+        refresh
+    ]);
 
     // La pagina se refresca cada tiempo dado.
     setTimeout(() => {
@@ -144,7 +156,7 @@ export default function ListaTipoStatusPage() {
                                             refresh,
                                             idRegistroOperacion,
                                             setRefresh,
-                                            eliminarTipoReporte,
+                                            RemoverTipoReporte,
                                             () => {
                                                 toggleModalRemoverRegistro(
                                                     estadoModalRemoverRegistro,
@@ -179,7 +191,7 @@ export default function ListaTipoStatusPage() {
                                                 refresh,
                                                 idRegistroOperacion,
                                                 descripcionDeTipoReporte,
-                                                actualizarTipoReporte,
+                                                ModificarTipoReporte,
                                                 setRefresh,
                                                 () => {
                                                     toggleModalModificarRegistro(
@@ -232,7 +244,7 @@ export default function ListaTipoStatusPage() {
                                             registrarDato(
                                                 refresh,
                                                 descripcionDeTipoReporte,
-                                                registrarTipoReporte,
+                                                RegistrarTipoReporte,
                                                 setRefresh,
                                                 () => {
                                                     toggleModalRegistro(

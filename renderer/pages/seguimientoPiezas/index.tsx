@@ -16,10 +16,12 @@ import {
 } from './logic/formatearDatos';
 
 import {
-    getSeguimientoPiezas,
-    getLineas,
-    buscarPieza
-} from './logic/query';
+    SeguimientoPiezas,
+    BuscarPiezaEnSeguimiento
+} from '../../utils/API/interface/dashboard';
+import {
+    ConsultaLinea
+} from '../../utils/API/interface/linea';
 
 export default function ListaLineasPage() {
     // Declaramos los hookers que vamos a usar.
@@ -31,28 +33,48 @@ export default function ListaLineasPage() {
     const [refresh, setRefresh] = React.useState(true);
 
     const [dataMatrix, setDataMatrix] = React.useState('');
-    const [linea, setLinea] = React.useState('');
+    const [linea, setLinea] = React.useState();
     const [listaLineas, setListaLineas] = React.useState([]);
     const [piezaBuscada, setPiezaBuscada] = React.useState([]);
 
     // Declaramos el useEffect de react para actualizar
     // el contenido de la vista.
     React.useEffect(() => {
-        getSeguimientoPiezas(
+        SeguimientoPiezas(
             elementos,
             offset,
+            linea,
             setListaRegistros,
-            setTotalPaginas,
-            linea
+            setTotalPaginas
         );
-    }, [paginaActual, refresh, linea]);
+    }, [
+        paginaActual,
+        refresh,
+        linea
+    ]);
 
     React.useEffect(() => {
-        buscarPieza(dataMatrix, setPiezaBuscada);
-    }, [dataMatrix, refresh]);
+        BuscarPiezaEnSeguimiento(
+            dataMatrix,
+            setPiezaBuscada
+        );
+    }, [
+        dataMatrix,
+        refresh
+    ]);
 
     React.useEffect(() => {
-        getLineas(setListaLineas, setLinea);
+        ConsultaLinea(
+            null,
+            null,
+            null,
+            setListaLineas,
+            null
+        );
+
+        if(listaLineas.length > 0) {
+            setLinea(listaLineas[0].id);
+        }
     }, []);
 
     function funcion() {
