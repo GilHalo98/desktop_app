@@ -1,11 +1,3 @@
-// Importa la libreria para las querrys.
-import axios from "axios";
-
-// Variables del entorno.
-const API_PORT = process.env.API_PORT;
-const API_HOST = process.env.API_HOST;
-const API_URL = process.env.API_URL;
-
 const getLineas = async (
     limit: any, offset: any,
     setListaRegistros: any,
@@ -15,7 +7,7 @@ const getLineas = async (
     // Realizamos la consulta de los registros registrados.
     const registrosResponse = await axios({
         method: 'get',
-        url: 'http://' + API_HOST + ':' + API_PORT + API_URL + 'linea/consultar',
+        url: ENDPOINTS.LINEA.CONSULTA,
         params: {
             offset: offset,
             limit: limit,

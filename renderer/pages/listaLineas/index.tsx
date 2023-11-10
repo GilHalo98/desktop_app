@@ -23,15 +23,17 @@ import ModalRemoverRegistro from '../../components/modals/modarRemoverRegistro';
 import InputBusqueda from './componentes/inputBusqueda';
 import MenuRegistroLinea from './componentes/menuRegistroLinea';
 
+// Interfaz con la API.
+import {
+    ConsultaLinea,
+    RegistrarLinea,
+    RemoverLinea,
+    ModificarLinea
+} from '../../utils/API/interface/linea';
+
 // Funciones de vista.
 import { funcionRefresh } from './logic/refresh';
 import { formatearDatos } from './logic/formatearDatos';
-import {
-    getLineas,
-    registrarLinea,
-    eliminarLinea,
-    modificarLinea
-} from './logic/query';
 import { eliminarDato, modificarDato, registrarDato } from './logic/operacionesRegistros';
 import {
     toggleModalRegistro,
@@ -69,12 +71,12 @@ export default function ListaLineasPage() {
     // Declaramos el useEffect de react para actualizar
     // el contenido de la vista.
     React.useEffect(() => {
-        getLineas(
+        ConsultaLinea(
             elementos,
             offset,
+            nombreLinea,
             setListaRegistros,
-            setTotalPaginas,
-            nombreLinea
+            setTotalPaginas
         );
     }, [paginaActual, nombreLinea, elementos, refresh]);
 
@@ -161,7 +163,7 @@ export default function ListaLineasPage() {
                                             refresh,
                                             idRegistroOperacion,
                                             setRefresh,
-                                            eliminarLinea,
+                                            RemoverLinea,
                                             () => {
                                                 toggleModalRemoverRegistro(
                                                     estadoModalRemoverRegistro,
@@ -198,7 +200,7 @@ export default function ListaLineasPage() {
                                                 idRegistroOperacion,
                                                 nombreDeLinea,
                                                 descripcionDeLinea,
-                                                modificarLinea,
+                                                ModificarLinea,
                                                 setRefresh,
                                                 () => {
                                                     toggleModalModificarRegistro(
@@ -253,7 +255,7 @@ export default function ListaLineasPage() {
                                                 refresh,
                                                 nombreDeLinea,
                                                 descripcionDeLinea,
-                                                registrarLinea,
+                                                RegistrarLinea,
                                                 setRefresh,
                                                 () => {
                                                     toggleModalRegistro(
