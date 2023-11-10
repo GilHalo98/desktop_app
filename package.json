@@ -11,6 +11,7 @@
     "postinstall": "electron-builder install-app-deps"
   },
   "dependencies": {
+    "@tremor/react": "^3.11.0",
     "axios": "^1.6.0",
     "bootstrap": "^5.3.2",
     "electron-serve": "^1.1.0",
