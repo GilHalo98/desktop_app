@@ -229,6 +229,21 @@ const ENDPOINTS = {
             + URL_GENERALES.ESTADO_STATUS
             + 'eliminar',
     },
+
+    DASHBOARD: {
+        SEGUIMIENTO: {
+            PIEZAS:
+                BASE
+                + URL_GENERALES.DASHBOARD
+                + 'seguimiento/piezas',
+        },
+        BUSCAR: {
+            PIEZA:
+                BASE
+                + URL_GENERALES.DASHBOARD
+                + 'buscar/pieza',
+        }
+    }
 };
 
 export {
