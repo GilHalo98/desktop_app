@@ -1,6 +1,6 @@
 // Paginas a las que se pueden accesar desde el sidebar.
 const paginas = [
-    {id: "0", url: "/home", descripcion: "Pagina Principal"},
+    {id: "0", url: "/home", descripcion: "Dashboard"},
     {id: "1", url: "/listaLineas", descripcion: "Lista de lineas"},
     {id: "2", url: "/listaZonas", descripcion: "Lista de zonas"},
     {id: "3", url: "/listaReportes", descripcion: "Lista de reportes"},
@@ -10,6 +10,7 @@ const paginas = [
     {id: "7", url: "/listaTipoStatus", descripcion: "Lista de tipos de status"},
     {id: "8", url: "/listaTipoPiezas", descripcion: "Lista de tipos de piezas"},
     {id: "9", url: "/seguimientoPiezas", descripcion: "Seguimiento de piezas"},
+    {id: "10", url: "/listaEstadoStatus", descripcion: "Lista de estados de status"},
 ];
 
 // Retornamos las paginas como un modulo.

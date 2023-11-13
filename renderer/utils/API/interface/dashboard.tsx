@@ -1,7 +1,10 @@
 // Importamos los request.
 import {
     GetSeguimientoPiezas,
-    GetBuscarPiezaEnSeguimiento
+    GetBuscarPiezaEnSeguimiento,
+    GetPiezasOkRechazadas,
+    GetPiezasProcesadasPorLinea,
+    GetConteoPiezasPorTipo
 } from "../request/dashboard";
 
 function SeguimientoPiezas (
@@ -56,7 +59,59 @@ function BuscarPiezaEnSeguimiento (
     });
 };
 
+function PiezasOkRechazadas(
+    setDatosReporte: Function
+) {
+    // Realizamos el request.
+    GetPiezasOkRechazadas().then((respuesta) => {
+        // Guardamos los reportes en la zona.
+        setDatosReporte(respuesta.data.reporte);
+
+    }).catch((error) => {
+        // Ocurrio un errr al realizar el request.
+        console.log(error);
+
+    }).finally(() => {
+    });
+};
+
+function PiezasProcesadasPorLinea(
+    setDatosReporte: Function
+) {
+    // Realizamos el request.
+    GetPiezasProcesadasPorLinea().then((respuesta) => {
+        // Guardamos los reportes en la zona.
+        setDatosReporte(respuesta.data.reporte);
+
+    }).catch((error) => {
+        // Ocurrio un errr al realizar el request.
+        console.log(error);
+
+    }).finally(() => {
+    });
+};
+
+function ConteoPiezasPorTipo(
+    setDatosReporte: Function
+) {
+    // Realizamos el request.
+    GetConteoPiezasPorTipo().then((respuesta) => {
+        // Guardamos los reportes en la zona.
+        setDatosReporte(respuesta.data.reporte);
+
+    }).catch((error) => {
+        // Ocurrio un errr al realizar el request.
+        console.log(error);
+
+    }).finally(() => {
+    });
+};
+
+
 export {
     SeguimientoPiezas,
-    BuscarPiezaEnSeguimiento
+    BuscarPiezaEnSeguimiento,
+    PiezasOkRechazadas,
+    PiezasProcesadasPorLinea,
+    ConteoPiezasPorTipo
 };

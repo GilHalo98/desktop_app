@@ -13,6 +13,8 @@ module.exports = {
         unoptimized: true,
     },
 
+    pageExtensions: ['page.tsx', 'page.ts', 'page.jsx', 'page.js'],
+
     webpack: (config) => {
         return config
     },

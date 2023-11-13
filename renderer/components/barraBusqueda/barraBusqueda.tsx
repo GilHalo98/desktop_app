@@ -2,8 +2,7 @@ import React from 'react';
 
 import {
     Button, Collapse,
-    Container, Row, Col,
-    Card, CardBody
+    Container, Row, Col
 } from 'reactstrap';
 
 export default function BarraBusqueda(

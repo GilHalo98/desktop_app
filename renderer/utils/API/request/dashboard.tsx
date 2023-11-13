@@ -30,7 +30,35 @@ const GetBuscarPiezaEnSeguimiento = async (
     });
 };
 
+const GetPiezasOkRechazadas = async (
+) => {
+    return axios({
+        method: 'get',
+        url: ENDPOINTS.DASHBOARD.REPORTE.STATUS.PIEZA
+    });
+};
+
+const GetPiezasProcesadasPorLinea = async (
+) => {
+    return axios({
+        method: 'get',
+        url: ENDPOINTS.DASHBOARD.REPORTE.PROCESADA.PIEZA
+    });
+};
+
+const GetConteoPiezasPorTipo = async (
+) => {
+    return axios({
+        method: 'get',
+        url: ENDPOINTS.DASHBOARD.REPORTE.PROCESADA.TIPO_PIEZA
+    });
+};
+
+
 export {
     GetSeguimientoPiezas,
-    GetBuscarPiezaEnSeguimiento
+    GetBuscarPiezaEnSeguimiento,
+    GetPiezasOkRechazadas,
+    GetPiezasProcesadasPorLinea,
+    GetConteoPiezasPorTipo
 };

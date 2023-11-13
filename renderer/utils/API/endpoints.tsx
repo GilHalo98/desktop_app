@@ -242,6 +242,24 @@ const ENDPOINTS = {
                 BASE
                 + URL_GENERALES.DASHBOARD
                 + 'buscar/pieza',
+        }, 
+        REPORTE: {
+            STATUS: {
+                PIEZA: 
+                    BASE
+                    + URL_GENERALES.DASHBOARD
+                    + '/reporte/status/pieza',
+            },
+            PROCESADA: {
+                PIEZA:
+                    BASE
+                    + URL_GENERALES.DASHBOARD
+                    + '/reporte/procesada/pieza',
+                TIPO_PIEZA:
+                    BASE
+                    + URL_GENERALES.DASHBOARD
+                    + '/reporte/procesada/tipoPieza'
+            }
         }
     }
 };
