@@ -1,13 +1,19 @@
+'use client'
+
+// React.
 import React from 'react';
 
+// Componentes de reactstrap.
 import {
     Table, Button,
     Container, Row, Col,
     Card, CardBody, CardTitle, CardSubtitle, CardText, CardHeader, List,
 } from 'reactstrap';
 
+// Paginacion de la tabla.
 import Paginacion from '../paginacion/paginacion';
-import ModalOpcionesTabla from '../modals/modalTabla';
+
+// Funcionalidad de la tabla.
 import {
     thOpciones, tdOpciones, mostrarAgregarRegistro
 } from './logic/columnaOpciones';
@@ -21,7 +27,7 @@ export default function Tabla(
                 <Container>
                     <Row>
                         <Col sm='9'>
-                            <h1>{props.titulo}</h1>
+                            {props.titulo}
                         </Col>
 
                         {mostrarAgregarRegistro(
@@ -84,7 +90,7 @@ export default function Tabla(
 
                                     {tdOpciones(
                                         props.mostrarOpciones,
-                                        registro.metadata.id,
+                                        parseInt(registro.metadata.id),
                                         props.toggleModalModificarRegistro,
                                         props.toggleModalRemoverRegistro
                                     )}

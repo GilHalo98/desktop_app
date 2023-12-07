@@ -1,16 +1,11 @@
 // Paginas a las que se pueden accesar desde el sidebar.
 const paginas = [
     {id: "0", url: "/home", descripcion: "Dashboard"},
-    {id: "1", url: "/listaLineas", descripcion: "Lista de lineas"},
-    {id: "2", url: "/listaZonas", descripcion: "Lista de zonas"},
-    {id: "3", url: "/listaReportes", descripcion: "Lista de reportes"},
-    {id: "4", url: "/listaStatus", descripcion: "Lista de status"},
-    {id: "5", url: "/listaPiezas", descripcion: "Lista de piezas"},
-    {id: "6", url: "/listaTipoReportes", descripcion: "Lista de tipos de reportes"},
-    {id: "7", url: "/listaTipoStatus", descripcion: "Lista de tipos de status"},
-    {id: "8", url: "/listaTipoPiezas", descripcion: "Lista de tipos de piezas"},
-    {id: "9", url: "/seguimientoPiezas", descripcion: "Seguimiento de piezas"},
-    {id: "10", url: "/listaEstadoStatus", descripcion: "Lista de estados de status"},
+    {id: "1", url: "/home/listaReportes", descripcion: "Registros de Reportes"},
+    {id: "2", url: "/home/listaPermisos", descripcion: "Registros de Permisos"},
+    {id: "3", url: "/home/listaEmpleados", descripcion: "Registros de Empelados"},
+    {id: "4", url: "/home/listaRoles", descripcion: "Registros de Roles"},
+    {id: "5", url: "/home/listaTiposReportes", descripcion: "Registros de Tipos de Reportes"},
 ];
 
 // Retornamos las paginas como un modulo.
