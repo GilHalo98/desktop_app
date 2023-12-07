@@ -8,7 +8,8 @@ const GetTipoReporte = async (
     parametros: {
         limit: number,
         offset: number,
-        descripcionTipoReporte: string
+        id: number,
+        clasificacionReporte: string
     }
 ) => {
     return axios({
@@ -20,6 +21,7 @@ const GetTipoReporte = async (
 
 const PostTipoReporte = async (
     body: {
+        clasificacionReporte: string,
         descripcionTipoReporte: string
     }
 ) => {
@@ -33,6 +35,7 @@ const PostTipoReporte = async (
 const PutTipoReporte = async (
     body: {
         id: number,
+        clasificacionReporte: string,
         descripcionTipoReporte: string
     }
 ) => {

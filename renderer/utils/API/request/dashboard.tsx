@@ -4,61 +4,43 @@ import axios from "axios";
 // Importamos los endpoints
 import { ENDPOINTS } from "../endpoints";
 
-const GetSeguimientoPiezas = async (
+const GetAccesosRecientes = async (
     parametros: {
         limit: number,
         offset: number,
-        idLineaVinculada: number
+        id: string,
+        descripcionReporte: string
     }
 ) => {
     return axios({
         method: 'get',
-        url: ENDPOINTS.DASHBOARD.SEGUIMIENTO.PIEZAS,
+        url: ENDPOINTS.DASHBOARD.ACCESOS_RECIENTES,
         params: parametros
     });
 };
 
-const GetBuscarPiezaEnSeguimiento = async (
-    parametros: {
-        dataMatrix: string
-    }
+const GetAccesosPorDia = async (
+    parametros: {}
 ) => {
     return axios({
         method: 'get',
-        url: ENDPOINTS.DASHBOARD.BUSCAR.PIEZA,
+        url: ENDPOINTS.DASHBOARD.ACCESOS_POR_DIA,
         params: parametros
     });
 };
 
-const GetPiezasOkRechazadas = async (
+const GetReportesPorTipo = async (
+    parametros: {}
 ) => {
     return axios({
         method: 'get',
-        url: ENDPOINTS.DASHBOARD.REPORTE.STATUS.PIEZA
+        url: ENDPOINTS.DASHBOARD.REPORTE_POR_TIPO,
+        params: parametros
     });
 };
-
-const GetPiezasProcesadasPorLinea = async (
-) => {
-    return axios({
-        method: 'get',
-        url: ENDPOINTS.DASHBOARD.REPORTE.PROCESADA.PIEZA
-    });
-};
-
-const GetConteoPiezasPorTipo = async (
-) => {
-    return axios({
-        method: 'get',
-        url: ENDPOINTS.DASHBOARD.REPORTE.PROCESADA.TIPO_PIEZA
-    });
-};
-
 
 export {
-    GetSeguimientoPiezas,
-    GetBuscarPiezaEnSeguimiento,
-    GetPiezasOkRechazadas,
-    GetPiezasProcesadasPorLinea,
-    GetConteoPiezasPorTipo
+    GetAccesosRecientes,
+    GetAccesosPorDia,
+    GetReportesPorTipo
 };

@@ -4,60 +4,63 @@ import axios from "axios";
 // Importamos los endpoints
 import { ENDPOINTS } from "../endpoints";
 
-const GetTipoStatus = async (
+const GetPermiso = async (
     parametros: {
         limit: number,
         offset: number,
-        descripcionTipoStatus: string
+        id: string,
+        descripcionPermiso: string,
     }
 ) => {
     return axios({
         method: 'get',
-        url: ENDPOINTS.TIPO_STATUS.CONSULTA,
+        url: ENDPOINTS.PERMISO.CONSULTA,
         params: parametros
     });
 };
 
-const PostTipoStatus = async (
+const PostPermiso = async (
     body: {
-        descripcionTipoStatus: string
+        descripcionPermiso: string,
+        autorizacion: number
     }
 ) => {
     return axios({
         method: 'post',
-        url: ENDPOINTS.TIPO_STATUS.REGISTRAR,
+        url: ENDPOINTS.PERMISO.REGISTRAR,
         data: body
     });
 };
 
-const PutTipoStatus = async (
+const PutPermiso = async (
     body: {
         id: number,
-        descripcionTipoStatus: string
+        descripcionPermiso: string,
+        autorizacion: number
     }
 ) => {
     return axios({
         method: 'put',
-        url: ENDPOINTS.TIPO_STATUS.MODIFICAR,
+        url: ENDPOINTS.PERMISO.MODIFICAR,
         data: body
     });
 };
 
-const DeleteTipoStatus = async (
+const DeletePermiso = async (
     parametros: {
         id: number,
     }
 ) => {
     return axios({
         method: 'delete',
-        url: ENDPOINTS.TIPO_STATUS.ELIMINAR,
+        url: ENDPOINTS.PERMISO.ELIMINAR,
         params: parametros
     });
 };
 
 export {
-    GetTipoStatus,
-    PostTipoStatus,
-    PutTipoStatus,
-    DeleteTipoStatus
+    GetPermiso,
+    PostPermiso,
+    PutPermiso,
+    DeletePermiso
 };

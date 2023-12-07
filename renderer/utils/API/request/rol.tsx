@@ -4,60 +4,67 @@ import axios from "axios";
 // Importamos los endpoints
 import { ENDPOINTS } from "../endpoints";
 
-const GetEstadoStatus = async (
+const GetRol = async (
     parametros: {
         limit: number,
         offset: number,
-        nombreEstado: string
+        id: number,
+        rolTrabajador: string,
+        descripcionRol: string,
+        idPermisoVinculado: number
     }
 ) => {
     return axios({
         method: 'get',
-        url: ENDPOINTS.ESTADO_STATUS.CONSULTA,
+        url: ENDPOINTS.ROL.CONSULTA,
         params: parametros
     });
 };
 
-const PostEstadoStatus = async (
+const PostRol = async (
     body: {
-        nombreEstado: string
+        rolTrabajador: string,
+        descripcionRol: string,
+        idPermisoVinculado: number
     }
 ) => {
     return axios({
         method: 'post',
-        url: ENDPOINTS.ESTADO_STATUS.REGISTRAR,
+        url: ENDPOINTS.ROL.REGISTRAR,
         data: body
     });
 };
 
-const PutEstadoStatus = async (
+const PutRol = async (
     body: {
         id: number,
-        nombreEstado: string,
+        rolTrabajador: string,
+        descripcionRol: string,
+        idPermisoVinculado: number
     }
 ) => {
     return axios({
         method: 'put',
-        url: ENDPOINTS.ESTADO_STATUS.MODIFICAR,
+        url: ENDPOINTS.ROL.MODIFICAR,
         data: body
     });
 };
 
-const DeleteEstadoStatus = async (
+const DeleteRol = async (
     parametros: {
         id: number,
     }
 ) => {
     return axios({
         method: 'delete',
-        url: ENDPOINTS.ESTADO_STATUS.ELIMINAR,
+        url: ENDPOINTS.ROL.ELIMINAR,
         params: parametros
     });
 };
 
 export {
-    GetEstadoStatus,
-    PostEstadoStatus,
-    PutEstadoStatus,
-    DeleteEstadoStatus
+    GetRol,
+    PostRol,
+    PutRol,
+    DeleteRol
 };

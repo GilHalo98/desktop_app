@@ -1,16 +1,15 @@
 // Importamos los request.
 import {
-    GetSeguimientoPiezas,
-    GetBuscarPiezaEnSeguimiento,
-    GetPiezasOkRechazadas,
-    GetPiezasProcesadasPorLinea,
-    GetConteoPiezasPorTipo
+    GetAccesosRecientes,
+    GetAccesosPorDia,
+    GetReportesPorTipo
 } from "../request/dashboard";
 
-function SeguimientoPiezas (
+function ConsultaAccesosRecientes (
     limit: number,
     offset: number,
-    idLineaVinculada: number,
+    id: string,
+    descripcionReporte: string,
     setListaRegistros: Function,
     setTotalPaginas: Function
 ) {
@@ -18,16 +17,19 @@ function SeguimientoPiezas (
     const parametrosBusqueda = {
         limit: limit,
         offset: offset,
-        idLineaVinculada: idLineaVinculada
+        id: id,
+        descripcionReporte: descripcionReporte,
     };
 
     // Realizamos el request.
-    GetSeguimientoPiezas(parametrosBusqueda).then((respuesta) => {
-        // Guardamos los registros en la zona.
+    GetAccesosRecientes(parametrosBusqueda).then((respuesta) => {
+        // Guardamos los registros en la Reporte.
         setListaRegistros(respuesta.data.registros);
 
-        // Guardamos el total de paginas en la variable.
-        setTotalPaginas(Math.ceil(respuesta.data.totalRegistros / limit));
+        if(setTotalPaginas) {
+            // Guardamos el total de paginas en la variable.
+            setTotalPaginas(Math.ceil(respuesta.data.totalRegistros / limit));
+        }
 
     }).catch((error) => {
         // Ocurrio un errr al realizar el request.
@@ -37,19 +39,17 @@ function SeguimientoPiezas (
     });
 };
 
-function BuscarPiezaEnSeguimiento (
-    dataMatrix: string,
-    setRegistroBuscado: Function
+function ReporteAccesosPorDia (
+    setListaRegistros: Function,
 ) {
     // Creamos los parametros de busqueda de la consulta.
     const parametrosBusqueda = {
-        dataMatrix: dataMatrix.length <= 0 ? null : dataMatrix
     };
 
     // Realizamos el request.
-    GetBuscarPiezaEnSeguimiento(parametrosBusqueda).then((respuesta) => {
-        // Guardamos los registros en la zona.
-        setRegistroBuscado(respuesta.data.registro);
+    GetAccesosPorDia(parametrosBusqueda).then((respuesta) => {
+        // Guardamos los registros en la Reporte.
+        setListaRegistros(respuesta.data);
 
     }).catch((error) => {
         // Ocurrio un errr al realizar el request.
@@ -59,45 +59,17 @@ function BuscarPiezaEnSeguimiento (
     });
 };
 
-function PiezasOkRechazadas(
-    setDatosReporte: Function
+function ReportesPorTipo (
+    setListaRegistros: Function,
 ) {
+    // Creamos los parametros de busqueda de la consulta.
+    const parametrosBusqueda = {
+    };
+
     // Realizamos el request.
-    GetPiezasOkRechazadas().then((respuesta) => {
-        // Guardamos los reportes en la zona.
-        setDatosReporte(respuesta.data.reporte);
-
-    }).catch((error) => {
-        // Ocurrio un errr al realizar el request.
-        console.log(error);
-
-    }).finally(() => {
-    });
-};
-
-function PiezasProcesadasPorLinea(
-    setDatosReporte: Function
-) {
-    // Realizamos el request.
-    GetPiezasProcesadasPorLinea().then((respuesta) => {
-        // Guardamos los reportes en la zona.
-        setDatosReporte(respuesta.data.reporte);
-
-    }).catch((error) => {
-        // Ocurrio un errr al realizar el request.
-        console.log(error);
-
-    }).finally(() => {
-    });
-};
-
-function ConteoPiezasPorTipo(
-    setDatosReporte: Function
-) {
-    // Realizamos el request.
-    GetConteoPiezasPorTipo().then((respuesta) => {
-        // Guardamos los reportes en la zona.
-        setDatosReporte(respuesta.data.reporte);
+    GetReportesPorTipo(parametrosBusqueda).then((respuesta) => {
+        // Guardamos los registros en la Reporte.
+        setListaRegistros(respuesta.data.conteos);
 
     }).catch((error) => {
         // Ocurrio un errr al realizar el request.
@@ -109,9 +81,7 @@ function ConteoPiezasPorTipo(
 
 
 export {
-    SeguimientoPiezas,
-    BuscarPiezaEnSeguimiento,
-    PiezasOkRechazadas,
-    PiezasProcesadasPorLinea,
-    ConteoPiezasPorTipo
+    ConsultaAccesosRecientes,
+    ReporteAccesosPorDia,
+    ReportesPorTipo
 };

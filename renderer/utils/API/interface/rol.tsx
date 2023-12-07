@@ -1,28 +1,34 @@
 // Importamos los request.
 import {
-    GetTipoPieza,
-    PostTipoPieza,
-    DeleteTipoPieza,
-    PutTipoPieza 
-} from "../request/tipoPieza";
+    GetRol,
+    PostRol,
+    DeleteRol,
+    PutRol 
+} from "../request/rol";
 
-function ConsultaTipoPieza (
+function ConsultaRol (
     limit: number,
     offset: number,
-    descripcionTipoPieza: string,
+    id: number,
+    rolTrabajador: string,
+    descripcionRol: string,
+    idPermisoVinculado: number,
     setListaRegistros: Function,
-    setTotalPaginas: Function
+    setTotalPaginas: Function,
 ) {
     // Creamos los parametros de busqueda de la consulta.
     const parametrosBusqueda = {
         limit: limit,
         offset: offset,
-        descripcionTipoPieza: descripcionTipoPieza,
+        id: id,
+        rolTrabajador: rolTrabajador,
+        descripcionRol: descripcionRol,
+        idPermisoVinculado: idPermisoVinculado
     };
 
     // Realizamos el request.
-    GetTipoPieza(parametrosBusqueda).then((respuesta) => {
-        // Guardamos los registros en la zona.
+    GetRol(parametrosBusqueda).then((respuesta) => {
+        // Guardamos los registros en la Rol.
         setListaRegistros(respuesta.data.registros);
 
         if(setTotalPaginas) {
@@ -38,16 +44,20 @@ function ConsultaTipoPieza (
     });
 };
 
-function RegistrarTipoPieza (
-    descripcionTipoPieza: string
+function RegistrarRol (
+    rolTrabajador: string,
+    descripcionRol: string,
+    idPermisoVinculado: number,
 ) {
     // Creamos el cuerpo del registro.
     const cuerpoRegistro = {
-        descripcionTipoPieza: descripcionTipoPieza
+        rolTrabajador: rolTrabajador,
+        descripcionRol: descripcionRol,
+        idPermisoVinculado: idPermisoVinculado
     };
 
     // Realizamos el request.
-    PostTipoPieza(cuerpoRegistro).then((respuesta) => {
+    PostRol(cuerpoRegistro).then((respuesta) => {
 
     }).catch((error) => {
         // Ocurrio un errr al realizar el request.
@@ -57,7 +67,7 @@ function RegistrarTipoPieza (
     });
 };
 
-function RemoverTipoPieza(
+function RemoverRol(
     idRegistro: number
 ) {
     // Creamos los parametros de busqueda de la consulta.
@@ -66,7 +76,7 @@ function RemoverTipoPieza(
     }
 
     // Realizamos el request.
-    DeleteTipoPieza(parametrosBusqueda).then((respuesta) => {
+    DeleteRol(parametrosBusqueda).then((respuesta) => {
 
     }).catch((error) => {
         // Ocurrio un errr al realizar el request.
@@ -76,18 +86,22 @@ function RemoverTipoPieza(
     });
 }
 
-function ModificarTipoPieza(
+function ModificarRol(
     idRegistro: number,
-    descripcionTipoPieza: string
+    rolTrabajador: string,
+    descripcionRol: string,
+    idPermisoVinculado: number
 ) {
     // Creamos los parametros de busqueda de la consulta.
     const parametrosBusqueda = {
         id: idRegistro,
-        descripcionTipoPieza: descripcionTipoPieza
+        rolTrabajador: rolTrabajador,
+        descripcionRol: descripcionRol,
+        idPermisoVinculado: idPermisoVinculado
     }
 
     // Realizamos el request.
-    PutTipoPieza(parametrosBusqueda).then((respuesta) => {
+    PutRol(parametrosBusqueda).then((respuesta) => {
 
     }).catch((error) => {
         // Ocurrio un errr al realizar el request.
@@ -98,8 +112,8 @@ function ModificarTipoPieza(
 }
 
 export {
-    ConsultaTipoPieza,
-    RegistrarTipoPieza,
-    RemoverTipoPieza,
-    ModificarTipoPieza
+    ConsultaRol,
+    RegistrarRol,
+    RemoverRol,
+    ModificarRol
 };

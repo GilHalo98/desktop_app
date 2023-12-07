@@ -9,22 +9,22 @@ import {
 function ConsultaZona (
     limit: number,
     offset: number,
+    id: number,
     nombreZona: string,
-    idLineaVinculada: number,
     setListaRegistros: Function,
-    setTotalPaginas: Function
+    setTotalPaginas: Function,
 ) {
     // Creamos los parametros de busqueda de la consulta.
     const parametrosBusqueda = {
         limit: limit,
         offset: offset,
-        nombreZona: nombreZona,
-        idLineaVinculada: idLineaVinculada
+        id: id,
+        nombreZona: nombreZona
     };
 
     // Realizamos el request.
     GetZona(parametrosBusqueda).then((respuesta) => {
-        // Guardamos los registros en la zona.
+        // Guardamos los registros en la Zona.
         setListaRegistros(respuesta.data.registros);
 
         if(setTotalPaginas) {
@@ -42,14 +42,12 @@ function ConsultaZona (
 
 function RegistrarZona (
     nombreZona: string,
-    descripcionZona: string,
-    idLineaVinculada: number
+    descripcionZona: string
 ) {
     // Creamos el cuerpo del registro.
     const cuerpoRegistro = {
         nombreZona: nombreZona,
-        descripcionZona: descripcionZona,
-        idLineaVinculada: idLineaVinculada
+        descripcionZona: descripcionZona
     };
 
     // Realizamos el request.
@@ -85,15 +83,13 @@ function RemoverZona(
 function ModificarZona(
     idRegistro: number,
     nombreZona: string,
-    descripcionZona: string,
-    idLineaVinculada: number
+    descripcionZona: string
 ) {
     // Creamos los parametros de busqueda de la consulta.
     const parametrosBusqueda = {
         id: idRegistro,
         nombreZona: nombreZona,
-        descripcionZona: descripcionZona,
-        idLineaVinculada: idLineaVinculada
+        descripcionZona: descripcionZona
     }
 
     // Realizamos el request.

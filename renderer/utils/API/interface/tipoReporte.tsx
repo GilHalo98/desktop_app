@@ -9,20 +9,22 @@ import {
 function ConsultaTipoReporte (
     limit: number,
     offset: number,
-    descripcionTipoReporte: string,
+    id: number,
+    clasificacionReporte: string,
     setListaRegistros: Function,
-    setTotalPaginas: Function
+    setTotalPaginas: Function,
 ) {
     // Creamos los parametros de busqueda de la consulta.
     const parametrosBusqueda = {
         limit: limit,
         offset: offset,
-        descripcionTipoReporte: descripcionTipoReporte,
+        id: id,
+        clasificacionReporte: clasificacionReporte
     };
 
     // Realizamos el request.
     GetTipoReporte(parametrosBusqueda).then((respuesta) => {
-        // Guardamos los registros en la zona.
+        // Guardamos los registros en la TipoReporte.
         setListaRegistros(respuesta.data.registros);
 
         if(setTotalPaginas) {
@@ -39,10 +41,12 @@ function ConsultaTipoReporte (
 };
 
 function RegistrarTipoReporte (
+    clasificacionReporte: string,
     descripcionTipoReporte: string
 ) {
     // Creamos el cuerpo del registro.
     const cuerpoRegistro = {
+        clasificacionReporte: clasificacionReporte,
         descripcionTipoReporte: descripcionTipoReporte
     };
 
@@ -78,11 +82,13 @@ function RemoverTipoReporte(
 
 function ModificarTipoReporte(
     idRegistro: number,
+    clasificacionReporte: string,
     descripcionTipoReporte: string
 ) {
     // Creamos los parametros de busqueda de la consulta.
     const parametrosBusqueda = {
         id: idRegistro,
+        clasificacionReporte: clasificacionReporte,
         descripcionTipoReporte: descripcionTipoReporte
     }
 

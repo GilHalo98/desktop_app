@@ -1,28 +1,30 @@
 // Importamos los request.
 import {
-    GetTipoStatus,
-    PostTipoStatus,
-    DeleteTipoStatus,
-    PutTipoStatus 
-} from "../request/tipoStatus";
+    GetIoT,
+    PostIoT,
+    DeleteIoT,
+    PutIoT 
+} from "../request/IoT";
 
-function ConsultaTipoStatus (
+function ConsultaIoT (
     limit: number,
     offset: number,
-    descripcionTipoStatus: string,
+    id: number,
+    idPermisoVinculado: number,
     setListaRegistros: Function,
-    setTotalPaginas: Function
+    setTotalPaginas: Function,
 ) {
     // Creamos los parametros de busqueda de la consulta.
     const parametrosBusqueda = {
         limit: limit,
         offset: offset,
-        descripcionTipoStatus: descripcionTipoStatus,
+        id: id,
+        idPermisoVinculado: idPermisoVinculado
     };
 
     // Realizamos el request.
-    GetTipoStatus(parametrosBusqueda).then((respuesta) => {
-        // Guardamos los registros en la zona.
+    GetIoT(parametrosBusqueda).then((respuesta) => {
+        // Guardamos los registros en la IoT.
         setListaRegistros(respuesta.data.registros);
 
         if(setTotalPaginas) {
@@ -38,16 +40,18 @@ function ConsultaTipoStatus (
     });
 };
 
-function RegistrarTipoStatus (
-    descripcionTipoStatus: string
+function RegistrarIoT (
+    descripcionDispositivo: string,
+    idPermisoVinculado: number
 ) {
     // Creamos el cuerpo del registro.
     const cuerpoRegistro = {
-        descripcionTipoStatus: descripcionTipoStatus
+        descripcionDispositivo: descripcionDispositivo,
+        idPermisoVinculado: idPermisoVinculado
     };
 
     // Realizamos el request.
-    PostTipoStatus(cuerpoRegistro).then((respuesta) => {
+    PostIoT(cuerpoRegistro).then((respuesta) => {
 
     }).catch((error) => {
         // Ocurrio un errr al realizar el request.
@@ -57,7 +61,7 @@ function RegistrarTipoStatus (
     });
 };
 
-function RemoverTipoStatus(
+function RemoverIoT(
     idRegistro: number
 ) {
     // Creamos los parametros de busqueda de la consulta.
@@ -66,7 +70,7 @@ function RemoverTipoStatus(
     }
 
     // Realizamos el request.
-    DeleteTipoStatus(parametrosBusqueda).then((respuesta) => {
+    DeleteIoT(parametrosBusqueda).then((respuesta) => {
 
     }).catch((error) => {
         // Ocurrio un errr al realizar el request.
@@ -76,18 +80,20 @@ function RemoverTipoStatus(
     });
 }
 
-function ModificarTipoStatus(
+function ModificarIoT(
     idRegistro: number,
-    descripcionTipoStatus: string
+    descripcionDispositivo: string,
+    idPermisoVinculado: number
 ) {
     // Creamos los parametros de busqueda de la consulta.
     const parametrosBusqueda = {
         id: idRegistro,
-        descripcionTipoStatus: descripcionTipoStatus
+        descripcionDispositivo: descripcionDispositivo,
+        idPermisoVinculado: idPermisoVinculado
     }
 
     // Realizamos el request.
-    PutTipoStatus(parametrosBusqueda).then((respuesta) => {
+    PutIoT(parametrosBusqueda).then((respuesta) => {
 
     }).catch((error) => {
         // Ocurrio un errr al realizar el request.
@@ -98,8 +104,8 @@ function ModificarTipoStatus(
 }
 
 export {
-    ConsultaTipoStatus,
-    RegistrarTipoStatus,
-    RemoverTipoStatus,
-    ModificarTipoStatus
+    ConsultaIoT,
+    RegistrarIoT,
+    RemoverIoT,
+    ModificarIoT
 };

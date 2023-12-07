@@ -1,15 +1,16 @@
 // Importamos los request.
 import {
-    GetEstadoStatus,
-    PostEstadoStatus,
-    DeleteEstadoStatus,
-    PutEstadoStatus 
-} from "../request/estadoStatus";
+    GetPermiso,
+    PostPermiso,
+    DeletePermiso,
+    PutPermiso 
+} from "../request/permiso";
 
-function ConsultaEstadoStatus (
+function ConsultaPermiso (
     limit: number,
     offset: number,
-    nombreEstado: string,
+    id: string,
+    descripcionPermiso: string,
     setListaRegistros: Function,
     setTotalPaginas: Function
 ) {
@@ -17,12 +18,13 @@ function ConsultaEstadoStatus (
     const parametrosBusqueda = {
         limit: limit,
         offset: offset,
-        nombreEstado: nombreEstado
+        id: id,
+        descripcionPermiso: descripcionPermiso
     };
 
     // Realizamos el request.
-    GetEstadoStatus(parametrosBusqueda).then((respuesta) => {
-        // Guardamos los registros en la zona.
+    GetPermiso(parametrosBusqueda).then((respuesta) => {
+        // Guardamos los registros en la Permiso.
         setListaRegistros(respuesta.data.registros);
 
         if(setTotalPaginas) {
@@ -38,17 +40,18 @@ function ConsultaEstadoStatus (
     });
 };
 
-function RegistrarEstadoStatus (
-    nombreEstado: string
+function RegistrarPermiso (
+    descripcionPermiso: string,
+    autorizacion: number
 ) {
     // Creamos el cuerpo del registro.
     const cuerpoRegistro = {
-        nombreEstado: nombreEstado
+        descripcionPermiso: descripcionPermiso,
+        autorizacion: autorizacion
     };
 
     // Realizamos el request.
-    PostEstadoStatus(cuerpoRegistro).then((respuesta) => {
-
+    PostPermiso(cuerpoRegistro).then((respuesta) => {
     }).catch((error) => {
         // Ocurrio un errr al realizar el request.
         console.log(error);
@@ -57,7 +60,7 @@ function RegistrarEstadoStatus (
     });
 };
 
-function RemoverEstadoStatus(
+function RemoverPermiso(
     idRegistro: number
 ) {
     // Creamos los parametros de busqueda de la consulta.
@@ -66,7 +69,7 @@ function RemoverEstadoStatus(
     }
 
     // Realizamos el request.
-    DeleteEstadoStatus(parametrosBusqueda).then((respuesta) => {
+    DeletePermiso(parametrosBusqueda).then((respuesta) => {
 
     }).catch((error) => {
         // Ocurrio un errr al realizar el request.
@@ -76,18 +79,20 @@ function RemoverEstadoStatus(
     });
 }
 
-function ModificarEstadoStatus(
+function ModificarPermiso(
     idRegistro: number,
-    nombreEstado: string,
+    descripcionPermiso: string,
+    autorizacion: number
 ) {
     // Creamos los parametros de busqueda de la consulta.
     const parametrosBusqueda = {
         id: idRegistro,
-        nombreEstado: nombreEstado
+        descripcionPermiso: descripcionPermiso,
+        autorizacion: autorizacion
     }
 
     // Realizamos el request.
-    PutEstadoStatus(parametrosBusqueda).then((respuesta) => {
+    PutPermiso(parametrosBusqueda).then((respuesta) => {
 
     }).catch((error) => {
         // Ocurrio un errr al realizar el request.
@@ -98,8 +103,8 @@ function ModificarEstadoStatus(
 }
 
 export {
-    ConsultaEstadoStatus,
-    RegistrarEstadoStatus,
-    RemoverEstadoStatus,
-    ModificarEstadoStatus
+    ConsultaPermiso,
+    RegistrarPermiso,
+    RemoverPermiso,
+    ModificarPermiso
 };

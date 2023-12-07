@@ -8,6 +8,7 @@ const GetZona = async (
     parametros: {
         limit: number,
         offset: number,
+        id: number,
         nombreZona: string
     }
 ) => {

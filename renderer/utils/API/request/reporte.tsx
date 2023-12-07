@@ -8,9 +8,8 @@ const GetReporte = async (
     parametros: {
         limit: number,
         offset: number,
-        dataMatrix: string,
-        idPiezaVinculada: number,
-        idZonaVinculada: number,
+        id: string,
+        descripcionReporte: string,
         idTipoReporteVinculado: number
     }
 ) => {
@@ -24,8 +23,6 @@ const GetReporte = async (
 const PostReporte = async (
     body: {
         descripcionReporte: string,
-        idPiezaVinculada: number,
-        idZonaVinculada: number,
         idTipoReporteVinculado: number
     }
 ) => {
@@ -40,8 +37,6 @@ const PutReporte = async (
     body: {
         id: number,
         descripcionReporte: string,
-        idPiezaVinculada: number,
-        idZonaVinculada: number,
         idTipoReporteVinculado: number
     }
 ) => {

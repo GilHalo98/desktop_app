@@ -14,17 +14,15 @@ const URL_GENERALES = {
      * Endpoints generales de la api. 
      */
 
-    ZONA: 'zona/',
-    LINEA: 'linea/',
-    PIEZA: 'pieza/',
-    STATUS: 'status/',
+    IOT: 'IoT/',
+    PERMISO: 'permiso/',
     REPORTE: 'reporte/',
-    DASHBOARD: 'dashboard/',
-    TIPO_PIEZA: 'tipoPieza/',
-    TIPO_STATUS: 'tipoStatus/',
+    ROL: 'rol/',
     TIPO_REPORTE: 'tipoReporte/',
-    ESTADO_STATUS: 'estadoStatus/',
-
+    ZONA: 'zona/',
+    EMPLEADO: 'empleado/',
+    DASHBOARD: 'dashboard/',
+    PRUEBAS: 'pruebas/'
 };
 
 const ENDPOINTS = {
@@ -32,91 +30,49 @@ const ENDPOINTS = {
      * Endpoints de la API.
      */
 
-    ZONA: {
+    IOT: {
         CONSULTA:
             BASE
-            + URL_GENERALES.ZONA
+            + URL_GENERALES.IOT
             + 'consultar',
 
-        REGISTRAR:
-            BASE
-            + URL_GENERALES.ZONA
-            + 'registrar',
+        REGISTRAR: {
+            DISPOSITIVO:
+                BASE
+                + URL_GENERALES.IOT
+                + 'registrar/dispositivo',
+        },
 
         MODIFICAR:
             BASE
-            + URL_GENERALES.ZONA
+            + URL_GENERALES.IOT
             + 'modificar',
 
         ELIMINAR:
             BASE
-            + URL_GENERALES.ZONA
+            + URL_GENERALES.IOT
             + 'eliminar',
     },
 
-    LINEA: {
+    PERMISO: {
         CONSULTA:
             BASE
-            + URL_GENERALES.LINEA
+            + URL_GENERALES.PERMISO
             + 'consultar',
 
         REGISTRAR:
             BASE
-            + URL_GENERALES.LINEA
+            + URL_GENERALES.PERMISO
             + 'registrar',
 
         MODIFICAR:
             BASE
-            + URL_GENERALES.LINEA
+            + URL_GENERALES.PERMISO
             + 'modificar',
 
         ELIMINAR:
             BASE
-            + URL_GENERALES.LINEA
-            + 'eliminar',
-    },
-
-    PIEZA: {
-        CONSULTA:
-            BASE
-            + URL_GENERALES.PIEZA
-            + 'consultar',
-
-        REGISTRAR:
-            BASE
-            + URL_GENERALES.PIEZA
-            + 'registrar',
-
-        MODIFICAR:
-            BASE
-            + URL_GENERALES.PIEZA
-            + 'modificar',
-
-        ELIMINAR:
-            BASE
-            + URL_GENERALES.PIEZA
-            + 'eliminar',
-    },
-
-    STATUS: {
-        CONSULTA:
-            BASE
-            + URL_GENERALES.STATUS
-            + 'consultar',
-
-        REGISTRAR:
-            BASE
-            + URL_GENERALES.STATUS
-            + 'registrar',
-
-        MODIFICAR:
-            BASE
-            + URL_GENERALES.STATUS
-            + 'modificar',
-
-        ELIMINAR:
-            BASE
-            + URL_GENERALES.STATUS
+            + URL_GENERALES.PERMISO
             + 'eliminar',
     },
 
@@ -142,47 +98,25 @@ const ENDPOINTS = {
             + 'eliminar',
     },
 
-    TIPO_PIEZA: {
+    ROL: {
         CONSULTA:
             BASE
-            + URL_GENERALES.TIPO_PIEZA
+            + URL_GENERALES.ROL
             + 'consultar',
 
         REGISTRAR:
             BASE
-            + URL_GENERALES.TIPO_PIEZA
+            + URL_GENERALES.ROL
             + 'registrar',
 
         MODIFICAR:
             BASE
-            + URL_GENERALES.TIPO_PIEZA
+            + URL_GENERALES.ROL
             + 'modificar',
 
         ELIMINAR:
             BASE
-            + URL_GENERALES.TIPO_PIEZA
-            + 'eliminar',
-    },
-
-    TIPO_STATUS: {
-        CONSULTA:
-            BASE
-            + URL_GENERALES.TIPO_STATUS
-            + 'consultar',
-
-        REGISTRAR:
-            BASE
-            + URL_GENERALES.TIPO_STATUS
-            + 'registrar',
-
-        MODIFICAR:
-            BASE
-            + URL_GENERALES.TIPO_STATUS
-            + 'modificar',
-
-        ELIMINAR:
-            BASE
-            + URL_GENERALES.TIPO_STATUS
+            + URL_GENERALES.ROL
             + 'eliminar',
     },
 
@@ -208,59 +142,72 @@ const ENDPOINTS = {
             + 'eliminar',
     },
 
-    ESTADO_STATUS: {
+    ZONA: {
         CONSULTA:
             BASE
-            + URL_GENERALES.ESTADO_STATUS
+            + URL_GENERALES.ZONA
             + 'consultar',
 
         REGISTRAR:
             BASE
-            + URL_GENERALES.ESTADO_STATUS
+            + URL_GENERALES.ZONA
             + 'registrar',
 
         MODIFICAR:
             BASE
-            + URL_GENERALES.ESTADO_STATUS
+            + URL_GENERALES.ZONA
             + 'modificar',
 
         ELIMINAR:
             BASE
-            + URL_GENERALES.ESTADO_STATUS
+            + URL_GENERALES.ZONA
+            + 'eliminar',
+    },
+
+    EMPLEADO: {
+        CONSULTA:
+            BASE
+            + URL_GENERALES.EMPLEADO
+            + 'consultar',
+
+        REGISTRAR:
+            BASE
+            + URL_GENERALES.EMPLEADO
+            + 'registrar',
+
+        MODIFICAR:
+            BASE
+            + URL_GENERALES.EMPLEADO
+            + 'modificar',
+
+        ELIMINAR:
+            BASE
+            + URL_GENERALES.EMPLEADO
             + 'eliminar',
     },
 
     DASHBOARD: {
-        SEGUIMIENTO: {
-            PIEZAS:
-                BASE
-                + URL_GENERALES.DASHBOARD
-                + 'seguimiento/piezas',
-        },
-        BUSCAR: {
-            PIEZA:
-                BASE
-                + URL_GENERALES.DASHBOARD
-                + 'buscar/pieza',
-        }, 
-        REPORTE: {
-            STATUS: {
-                PIEZA: 
-                    BASE
-                    + URL_GENERALES.DASHBOARD
-                    + '/reporte/status/pieza',
-            },
-            PROCESADA: {
-                PIEZA:
-                    BASE
-                    + URL_GENERALES.DASHBOARD
-                    + '/reporte/procesada/pieza',
-                TIPO_PIEZA:
-                    BASE
-                    + URL_GENERALES.DASHBOARD
-                    + '/reporte/procesada/tipoPieza'
-            }
-        }
+        ACCESOS_RECIENTES:
+            BASE
+            + URL_GENERALES.DASHBOARD
+            + 'accesos',
+
+        ACCESOS_POR_DIA: 
+            BASE
+            + URL_GENERALES.DASHBOARD
+            + 'accesos/porDia',
+
+        REPORTE_POR_TIPO:
+            BASE
+            + URL_GENERALES.DASHBOARD
+            + 'reporte/porTipo'
+    },
+
+    PRUEBAS: {
+        CARGA:
+            BASE
+            + URL_GENERALES.PRUEBAS
+            + 'carga/'
     }
 };
 

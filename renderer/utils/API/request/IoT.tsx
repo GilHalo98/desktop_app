@@ -4,60 +4,63 @@ import axios from "axios";
 // Importamos los endpoints
 import { ENDPOINTS } from "../endpoints";
 
-const GetTipoPieza = async (
+const GetIoT = async (
     parametros: {
         limit: number,
         offset: number,
-        descripcionTipoPieza: string
+        id: number,
+        idPermisoVinculado: number
     }
 ) => {
     return axios({
         method: 'get',
-        url: ENDPOINTS.TIPO_PIEZA.CONSULTA,
+        url: ENDPOINTS.IOT.CONSULTA,
         params: parametros
     });
 };
 
-const PostTipoPieza = async (
+const PostIoT = async (
     body: {
-        descripcionTipoPieza: string
+        descripcionDispositivo: string,
+        idPermisoVinculado: number
     }
 ) => {
     return axios({
         method: 'post',
-        url: ENDPOINTS.TIPO_PIEZA.REGISTRAR,
+        url: ENDPOINTS.IOT.REGISTRAR.DISPOSITIVO,
         data: body
     });
 };
 
-const PutTipoPieza = async (
+const PutIoT = async (
     body: {
         id: number,
-        descripcionTipoPieza: string
+        descripcionDispositivo: string,
+        idPermisoVinculado: number
     }
 ) => {
     return axios({
         method: 'put',
-        url: ENDPOINTS.TIPO_PIEZA.MODIFICAR,
+        url: ENDPOINTS.IOT.MODIFICAR,
         data: body
     });
 };
 
-const DeleteTipoPieza = async (
+const DeleteIoT = async (
     parametros: {
         id: number,
     }
 ) => {
     return axios({
         method: 'delete',
-        url: ENDPOINTS.TIPO_PIEZA.ELIMINAR,
+        url: ENDPOINTS.IOT.ELIMINAR,
         params: parametros
     });
 };
 
 export {
-    GetTipoPieza,
-    PostTipoPieza,
-    PutTipoPieza,
-    DeleteTipoPieza
+    GetIoT,
+    PostIoT,
+    PutIoT,
+    DeleteIoT
 };

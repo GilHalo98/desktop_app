@@ -9,9 +9,8 @@ import {
 function ConsultaReporte (
     limit: number,
     offset: number,
-    dataMatrix: string,
-    idPiezaVinculada: number,
-    idZonaVinculada: number,
+    id: string,
+    descripcionReporte: string,
     idTipoReporteVinculado: number,
     setListaRegistros: Function,
     setTotalPaginas: Function
@@ -20,15 +19,14 @@ function ConsultaReporte (
     const parametrosBusqueda = {
         limit: limit,
         offset: offset,
-        dataMatrix: dataMatrix,
-        idPiezaVinculada: idPiezaVinculada,
-        idZonaVinculada: idZonaVinculada,
+        id: id,
+        descripcionReporte: descripcionReporte,
         idTipoReporteVinculado: idTipoReporteVinculado
     };
 
     // Realizamos el request.
     GetReporte(parametrosBusqueda).then((respuesta) => {
-        // Guardamos los registros en la reporte.
+        // Guardamos los registros en la Reporte.
         setListaRegistros(respuesta.data.registros);
 
         if(setTotalPaginas) {
@@ -46,15 +44,11 @@ function ConsultaReporte (
 
 function RegistrarReporte (
     descripcionReporte: string,
-    idPiezaVinculada: number,
-    idZonaVinculada: number,
     idTipoReporteVinculado: number
 ) {
     // Creamos el cuerpo del registro.
     const cuerpoRegistro = {
         descripcionReporte: descripcionReporte,
-        idPiezaVinculada: idPiezaVinculada,
-        idZonaVinculada: idZonaVinculada,
         idTipoReporteVinculado: idTipoReporteVinculado
     };
 
@@ -91,16 +85,12 @@ function RemoverReporte(
 function ModificarReporte(
     idRegistro: number,
     descripcionReporte: string,
-    idPiezaVinculada: number,
-    idZonaVinculada: number,
     idTipoReporteVinculado: number
 ) {
     // Creamos los parametros de busqueda de la consulta.
     const parametrosBusqueda = {
         id: idRegistro,
         descripcionReporte: descripcionReporte,
-        idPiezaVinculada: idPiezaVinculada,
-        idZonaVinculada: idZonaVinculada,
         idTipoReporteVinculado: idTipoReporteVinculado
     }
 
